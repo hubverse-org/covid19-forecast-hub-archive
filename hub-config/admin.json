@@ -1,24 +1,26 @@
 {
-    "schema_version": "https://raw.githubusercontent.com/hubverse-org/schemas/main/v6.0.0/admin-schema.json",
-    "name": "Template Forecast Hub",
-    "maintainer": "Consortium of Infectious Disease Modeling Hubs",
-    "contact": {
-        "name": "Joe Bloggs",
-        "email": "j.bloggs@cidmh.com"
-    },
-    "repository": {
-        "host": "github",
-        "owner": "hubverse-org",
-        "name": "hubTemplate"
-    },
-    "file_format": ["csv", "parquet"],
-    "timezone": "US/Eastern",
-    "cloud": {
-        "enabled": false,
-        "host": {
-            "name": "aws",
-            "storage_service": "s3",
-            "storage_location": "hub-template"
-        }
+  "schema_version": "https://raw.githubusercontent.com/hubverse-org/schemas/main/v6.0.0/admin-schema.json",
+  "name": "COVID-19 Forecast Hub Archive",
+  "maintainer": "Reich Lab",
+  "contact": {
+    "name": "Nicholas Reich",
+    "email": "nick@umass.edu"
+  },
+  "repository": {
+    "host": "github",
+    "owner": "hubverse-org",
+    "name": "covid19-forecast-hub-archive"
+  },
+  "file_format": [
+    "parquet"
+  ],
+  "timezone": "US/Eastern",
+  "cloud": {
+    "enabled": false,
+    "host": {
+      "name": "aws",
+      "storage_service": "s3",
+      "storage_location": "covid19-forecast-hub-archive"
     }
+  }
 }
