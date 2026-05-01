@@ -1,0 +1,14 @@
+file,n_in,n_out,n_dropped,note
+AMM-EpiInvert/2022-09-05-AMM-EpiInvert.parquet,1152,144,1008,cleaned in place
+AMM-EpiInvert/2022-09-12-AMM-EpiInvert.parquet,992,124,868,cleaned in place
+AMM-EpiInvert/2022-09-19-AMM-EpiInvert.parquet,896,112,784,cleaned in place
+AMM-EpiInvert/2022-09-26-AMM-EpiInvert.parquet,896,112,784,cleaned in place
+AMM-EpiInvert/2022-10-03-AMM-EpiInvert.parquet,896,112,784,cleaned in place
+COVIDhub_CDC-ensemble/2022-01-03-COVIDhub_CDC-ensemble.parquet,43848,43848,0,no NA rows
+MUNI-ARIMA/2021-08-30-MUNI-ARIMA.parquet,6240,6240,0,no NA rows
+MUNI-ARIMA/2021-09-06-MUNI-ARIMA.parquet,6240,6240,0,no NA rows
+OliverWyman-Navigator/2021-06-13-OliverWyman-Navigator.parquet,16596,16596,0,no NA rows
+OliverWyman-Navigator/2021-06-20-OliverWyman-Navigator.parquet,16848,16848,0,no NA rows
+PandemicCentral-COVIDForest/2021-05-23-PandemicCentral-COVIDForest.parquet,95776,95776,0,no NA rows
+UMass-sarix/2023-07-24-UMass-sarix.parquet,34132,34132,0,no NA rows
+USC-SI_kJalpha/2021-06-13-USC-SI_kJalpha.parquet,173972,173972,0,no NA rows

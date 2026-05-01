@@ -1,0 +1,17 @@
+team_name: Masaryk University
+team_abbr: MUNI
+model_name: VAR
+model_abbr: VAR
+model_contributors:
+- name: Andrea Kraus
+- name: David Kraus
+website_url: https://krausstat.shinyapps.io/covid19global/
+license: cc-by-4.0
+team_model_designation: other
+model_details:
+  methods: Vector autoregression model fitted to outlier-corrected transformed weekly
+    aggregated series.
+  methods_long: This is a vector autoregression model fitted to outlier-corrected
+    transformed weekly aggregated series.
+  data_inputs: JHU CSSE
+ensemble_of_hub_models: no

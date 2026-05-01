@@ -1,0 +1,33 @@
+team_name: Iowa State - Lily Wang's Research Group
+team_abbr: IowaStateLW
+model_name: Spatiotemporal Epidemic Modeling
+model_abbr: STEM
+model_contributors:
+- name: Lily Wang
+- name: Guannan Wang
+  email: gwang01@wm.edu
+- name: Lei Gao
+- name: Xinyi Li
+- name: Shan Yu
+- name: Myungjin Kim
+- name: Yueying Wang
+- name: Zhiling Gu
+website_url: https://covid19.stat.iastate.edu
+license: cc-by-4.0
+citation: https://arxiv.org/abs/2004.14103
+twitter_handles: LilyWan84496995
+team_model_designation: primary
+model_details:
+  methods: Spatiotemporal Dynamics, Nowcasting and Forecasting of COVID-19 in the
+    United States.
+  methods_long: We develop a nonparametric space-time disease transmission model for
+    the epidemic data, and to study the spatial-temporal pattern in the spread of
+    COVID-19 at the county level. The proposed methodology can be used to dissect
+    the spatial structure and dynamics of spread, as well as to forecast how this
+    outbreak may unfold through time and space in the future. The projections assume
+    that the data used is reliable, the future will continue to follow the current
+    pattern, and current interventions will remain the same till the end of forecasting
+    period.
+  data_inputs: New York Times -nytimes/covid-19-data, health department webpages,  County-level
+    infected case and death data
+ensemble_of_hub_models: no

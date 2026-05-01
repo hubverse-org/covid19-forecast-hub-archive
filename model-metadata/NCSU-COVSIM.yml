@@ -1,0 +1,25 @@
+team_name: NCSU
+team_abbr: NCSU
+model_name: COVSIM
+model_abbr: COVSIM
+model_contributors:
+- name: Erik Rosenstrom
+  affiliation: North Carolina State University
+- name: Jessica Mele
+  affiliation: North Carolina State University
+- name: Julie Swann
+  affiliation: North Carolina State University
+- name: Julie Ivy
+  affiliation: North Carolina State University
+- name: Maria Mayorga
+  affiliation: North Carolina State University
+website_url: https://covsim.hosted-wordpress.oit.ncsu.edu/
+license: cc-by-4.0
+citation: https://doi.org/10.1001/jamanetworkopen.2021.10782
+institution_affil: North Carolina State University
+twitter_handles: covsim
+team_model_designation: primary
+model_details:
+  methods: Stochastic agent based model of North Carolina using data population and
+    demographic at the census tract level.
+ensemble_of_hub_models: no

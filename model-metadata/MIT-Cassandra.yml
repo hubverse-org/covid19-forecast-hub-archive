@@ -1,0 +1,35 @@
+team_name: MIT-Cassandra
+team_abbr: MIT
+model_name: MIT-Cassandra
+model_abbr: Cassandra
+model_contributors:
+- name: Georgia Perakis
+  affiliation: MIT Sloan School of Management
+  email: georgiap@mit.edu
+- name: Ioannis Spantidakis (yspant@mit.edu)
+  affiliation: MIT ORC PhD Student
+- name: Asterios Tsiourvas
+  affiliation: MIT ORC PhD Student
+- name: David Nze Ndong (davidzedong@gmail.com)
+  affiliation: MIT Masters of Finance recently graduated student
+- name: Mohammed Bennouna (amineben@mit.edu)
+  affiliation: MIT ORC PhD Student
+- name: Leann Thayaparan (lpgt@mit.edu)
+  affiliation: MIT ORC PhD Student
+- name: Divya Singhvi recently graduated PhD student from MIT ORC and Affiliated Researcher
+    at MIT Sloan
+  affiliation: dsinghvi@mit.edu
+- name: Boyan Peshlov MIT EMBA student
+  affiliation: bpeshlov@mit.edu
+- name: Omar Lami (oskali@mit.edu)
+  affiliation: MIT ORC PhD student
+- name: Shane Weisberg (shanew@mit.edu)
+  affiliation: MIT Masters of Business Analytics Student
+website_url: https://github.com/oskali/mit_cassandra
+license: mit
+team_model_designation: primary
+model_details:
+  methods: Ensemble model aggregating predictions from four constituent models. 1.
+    MDP feature representation 2. KNN time-series 3. Bi-LSTM time-series 4. C-SEIRD
+    epidemiological
+ensemble_of_hub_models: no

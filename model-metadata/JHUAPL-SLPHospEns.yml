@@ -1,0 +1,17 @@
+team_name: JHUAPL
+team_abbr: JHUAPL
+model_name: SLPHospEns
+model_abbr: SLPHospEns
+model_contributors:
+- name: Luke C. Mullany
+  affiliation: Johns Hopkins University Applied Physics Lab
+  email: luke.mullany@jhuapl.edu
+- name: Kaitlin Lovett (Johns Hopkins University Applied Physics Lab
+  email: kaitlin.lovett@jhuapl.edu
+website_url: https://github.com/lmullany/JHUAPL-SLPHospEns
+license: mit
+team_model_designation: secondary
+model_details:
+  methods: Estimates an ensemble of hospitalization forecasts by simulating the individual
+    model-specific forecasts from the submitted quantile functions, and linearly pooling.
+ensemble_of_hub_models: yes
