@@ -48,9 +48,15 @@ jobs:
           PR_NUMBER: ${{ github.event.number }}
         run: |
           library("hubValidations")
+          # `allow_extra_dates = TRUE` (and explicit `date_col`) accepts
+          # truth-side dates outside tasks.json's target_end_date allowlist
+          # for time-series only. Oracle-output is always validated strictly.
+          # See hubverse-org/hubValidations#296.
           v <- hubValidations::validate_target_pr(
               gh_repo = Sys.getenv("GITHUB_REPOSITORY"),
-              pr_number = Sys.getenv("PR_NUMBER")
+              pr_number = Sys.getenv("PR_NUMBER"),
+              date_col = "target_end_date",
+              allow_extra_dates = TRUE
           )
           hubValidations::check_for_errors(v, verbose = TRUE)
         shell: Rscript {0}
