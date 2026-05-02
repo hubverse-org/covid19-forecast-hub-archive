@@ -1,0 +1,64 @@
+team_name: Caltech CS156
+team_abbr: Caltech
+model_name: CS156
+model_abbr: CS156
+model_contributors:
+- name: Yaser S. Abu-Mostafa
+  affiliation: Caltech
+- name: Connor Soohoo
+  affiliation: Caltech
+- name: Albert Tseng
+  affiliation: Caltech
+- name: Dominic Yurk
+  affiliation: Caltech
+- name: Alexander Zlokapa
+  affiliation: Caltech
+- name: Rahil Bathwal
+  affiliation: Caltech
+- name: Nicholas Chang
+  affiliation: Caltech
+- name: Pavan Chitta
+  affiliation: Caltech
+- name: Kiruthika Devasenapathy
+  affiliation: Caltech
+- name: Annie Erickson
+  affiliation: Caltech
+- name: Sumit Goel
+  affiliation: Caltech
+- name: Jethin Gowda
+  affiliation: Caltech
+- name: Qixuan Jin
+  affiliation: Caltech
+- name: HyeongChan Jo
+  affiliation: Caltech
+- name: Juhyun Kim
+  affiliation: Caltech
+- name: Pranav Kulkarni
+  affiliation: Caltech
+- name: Sam Lushtak
+  affiliation: Caltech
+- name: Ethan Mann
+  affiliation: Caltech
+- name: Max Popken
+  affiliation: Caltech
+- name: Kushal Tirumala
+  affiliation: Caltech
+- name: Vignesh Varadarajan
+  affiliation: Caltech
+- name: Jagath Vytheeswaran
+  affiliation: Caltech
+- name: Chris Wang
+  affiliation: Caltech
+- name: Akshay Yeluri
+  affiliation: Caltech
+- name: Michael Zhang
+  affiliation: Caltech
+website_url: http://cs156.caltech.edu
+license: cc-by-nc-4.0
+team_funding: Clinard Innovation Fund, Caltech SURF Office, Mr. Charles Trimble and
+  Ms. Liying Huang
+team_model_designation: primary
+model_details:
+  methods: Aggregate of 14 machine learning (neural network, autoregressive, decision
+    tree, etc.) and epidemiological models guided by machine learning.
+ensemble_of_hub_models: no

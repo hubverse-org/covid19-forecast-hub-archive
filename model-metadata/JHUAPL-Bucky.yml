@@ -1,0 +1,30 @@
+team_name: Johns Hopkins University Applied Physics Lab
+team_abbr: JHUAPL
+model_name: Bucky
+model_abbr: Bucky
+model_contributors:
+- name: Matt Kinsey
+  affiliation: JHU/APL
+- name: Kate Tallaksen
+  affiliation: JHU/APL
+- name: R.F. Obrecht
+  affiliation: JHU/APL
+  email: freddy.obrecht@jhuapl.edu
+- name: Laura Asher
+  affiliation: JHU/APL
+- name: Cash Costello
+  affiliation: JHU/APL
+- name: Michael Kelbaugh
+  affiliation: JHU/APL
+  email: michael.kelbaugh@jhuapl.edu
+- name: Shelby Wilson
+  affiliation: JHU/APL
+website_url: https://docs.buckymodel.com
+repo_url: https://github.com/mattkinsey/bucky
+license: mit
+team_model_designation: primary
+model_details:
+  methods: Spatial compartment model using public mobility data. Local parameters
+    (case reporting rates, doubling times, etc) are estimated using data from CSSE,
+    HHS hospitalizations and CDC scenario 5.
+ensemble_of_hub_models: no

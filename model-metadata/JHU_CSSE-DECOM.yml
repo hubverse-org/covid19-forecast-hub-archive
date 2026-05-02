@@ -1,0 +1,19 @@
+team_name: Johns Hopkins Center for Systems Science and Engineering
+team_abbr: JHU_CSSE
+model_name: Dynamic, Empirical COVID-19 Outbreak Model
+model_abbr: DECOM
+model_contributors:
+- name: Maximilian Marshall
+  affiliation: JHU
+- name: Lauren Gardner
+- name: Carson Drew
+- name: Erin Burman
+- name: Kristen Nixon
+  email: knixon2@jhu.edu
+website_url: https://systems.jhu.edu/research/public-health/predicting-covid-19-risk/
+license: cc-by-4.0
+team_model_designation: primary
+model_details:
+  methods: County-level, empirical machine learning model driven by epidemiological,
+    mobility, demographic, and behavioral data.
+ensemble_of_hub_models: no

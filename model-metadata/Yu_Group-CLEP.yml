@@ -1,0 +1,46 @@
+team_name: Berkeley Yu Group
+team_abbr: Yu_Group
+model_name: Combined Linear and Exponential Predictor (CLEP)
+model_abbr: CLEP
+model_contributors:
+- name: Bin Yu
+  affiliation: UC Berkeley
+  email: binyu@berkeley.edu
+- name: Nick Altieri
+  affiliation: UC Berkeley
+- name: Rebecca L Barter
+  affiliation: UC Berkeley
+- name: James Duncan
+  affiliation: UC Berkeley
+- name: Raaz Dwivedi
+  affiliation: UC Berkeley
+- name: Karl Kumbier
+  affiliation: UC Berkeley
+- name: Xiao Li
+  affiliation: UC Berkeley
+- name: Robert Netzorg
+  affiliation: UC Berkeley
+- name: Briton Park
+  affiliation: UC Berkeley
+- name: Chandan Singh
+  affiliation: UC Berkeley
+- name: Yan Shuo Tan
+  affiliation: UC Berkeley
+- name: Tiffany Tang
+  affiliation: UC Berkeley
+- name: Chao Zhang
+  affiliation: UC Berkeley
+- name: Abhineet Agarwal
+  affiliation: UC Berkeley
+- name: Maya Shen
+  affiliation: UC Berkeley
+- name: Danqing Wang
+  affiliation: UC Berkeley
+website_url: https://covidseverity.com
+license: cc-by-4.0
+team_model_designation: primary
+model_details:
+  methods: Ensemble of a linear and exponential predictor (CLEP) for forecasting county-level
+    deaths and cases with prediction intervals. CLEP weighs each method by its recent
+    historical prediction performance
+ensemble_of_hub_models: no

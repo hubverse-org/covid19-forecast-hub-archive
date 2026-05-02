@@ -1,0 +1,13 @@
+team_name: Imperial
+team_abbr: Imperial
+model_name: Ensemble1
+model_abbr: ensemble1
+model_contributors:
+- name: Sangeeta Bhatia
+website_url: https://mrc-ide.github.io/covid19-short-term-forecasts/index.html
+license: cc-by-nc-4.0
+team_model_designation: other
+model_details:
+  methods: A disease transmission model with no assumptions about the future intervention
+    strategies.
+ensemble_of_hub_models: no

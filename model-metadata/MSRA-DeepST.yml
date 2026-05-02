@@ -1,0 +1,20 @@
+team_name: MSRA
+team_abbr: MSRA
+model_name: DeepST
+model_abbr: DeepST
+model_contributors:
+- name: Zhifeng Gao
+- name: Chaozhuo Li
+- name: Wei Cao
+- name: Shun Zheng
+- name: Jiang Bian
+- name: Xing Xie
+- name: Tie-Yan Liu
+website_url: https://covid.msra.cn
+license: cc-by-4.0
+team_model_designation: primary
+model_details:
+  methods: Our model is a deep spatio-temporal network with knowledge based SEIR as
+    a regularier under the assumption of spatio-temporal process in pandemic of different
+    regions.
+ensemble_of_hub_models: no

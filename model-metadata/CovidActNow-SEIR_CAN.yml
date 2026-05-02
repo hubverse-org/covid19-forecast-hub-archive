@@ -1,0 +1,26 @@
+team_name: CovidActNow
+team_abbr: CovidActNow
+model_name: SEIR_CAN
+model_abbr: SEIR_CAN
+model_contributors:
+- name: Eric Carlson
+- name: Max Henderson
+- name: Chris Kelly
+  email: ghop02@gmail.com
+- name: Igor Kofman
+  email: kofman@gmail.com
+- name: Xinyu Zhang
+website_url: https://covidactnow.org/
+repo_url: https://github.com/covid-projections/covid-data-model
+license: cc-by-4.0
+team_model_designation: primary
+model_details:
+  methods: SEIR model forecasts of cumulative deaths, incident deaths, incident hospitalizations  by
+    fitting predicted cases, deaths, and hospitalizations to the observations.
+  methods_long: 'The SEIR Model makes forecast of cumulative deaths, incident deaths,
+    incident hospitalizations by fitting predicted cases, deaths, and hospitalizations
+    to the observations. Quantiles of the forecast are derived from forecast error
+    (comparing latest observation and corresponding forecast) rescaled based on days
+    forward of forecast. '
+  data_inputs: NYTimes for case and death data
+ensemble_of_hub_models: no

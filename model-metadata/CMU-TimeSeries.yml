@@ -1,0 +1,59 @@
+team_name: Carnegie Mellon Delphi Group
+team_abbr: CMU
+model_name: TimeSeries
+model_abbr: TimeSeries
+model_contributors:
+- name: Alden Green
+  affiliation: Lead modeler - state deaths, Carnegie Mellon University
+- name: ''
+  email: ajgreen@andrew.cmu.edu
+- name: Addison Hu
+  affiliation: Co-lead modeler - county cases, Carnegie Mellon University
+- name: Dmitry Shemetov
+  affiliation: Carnegie Mellon University
+- name: Maria Jahja
+  affiliation: Co-lead modeler - county cases, Carnegie Mellon University
+- name: Valerie Ventura
+  affiliation: Carnegie Mellon University
+- name: Larry Wasserman
+  affiliation: Carnegie Mellon University
+- name: Rob Tibshirani
+  affiliation: Stanford University
+- name: Vishnu Shankar
+  affiliation: Stanford University
+- name: Jacob Bien
+  affiliation: University of Southern California
+- name: Logan Brooks
+  affiliation: Carnegie Mellon University
+- name: Balasubramanian Narasimhan
+  affiliation: Stanford University
+- name: Samyak Rajanala
+  affiliation: Stanford University
+- name: Aaron Rumack
+  affiliation: Carnegie Mellon University
+- name: Noah Simon
+  affiliation: University of Washington
+- name: James Sharpnack
+  affiliation: UC Davis
+- name: Daniel McDonald
+  affiliation: University of British Columbia
+- name: Ryan Tibshirani
+  affiliation: Senior author, Carnegie Mellon University
+- name: and the Delphi COVID-19 Response Team
+website_url: https://delphi.cmu.edu
+license: cc-by-4.0
+team_funding: CDC Center of Excellence, gifts from Google and Facebook
+team_model_designation: primary
+model_details:
+  methods: |
+    (State Hosp) An ensemble of (a) 28-day-window AR + residual resampling, (b) direction-stratified quantile AR (QAR), and (c) windowed QARX with cases. (State Deaths) (County Cases) Other QARX models.
+  methods_long: |-
+    State hospitalization forecasts - A CDF-space-averaged ensemble of 3 models. The first is a simple point AR model trained on a 28-day window of just hospitalization data normalized by population, with distributions built by sampling from studentized residuals. The second is a quantile autoregression model with additional case covariates, fit on the count scale with a 28-day training window; each of the 23 quantiles is learned using a separate quantile regression, with nonnegativity and sorting constraints applied post hoc. The third is a direction-stratified forecaster, which uses a linear classifier to determine which of five time-series directions (up, steady, down, too-low-to-call, or missing data) forecasters to use, where the direction-conditional forecasters are quantile autoregression models trained on the rate scale with no training window.
+    State death forecasts - A basic AR-type time series model fit using lagged values of case counts and deaths as features. No assumptions are made regarding reopening or governmental interventions. The model is jointly fit across all 50 US states, after some time-alignment is performed as a preprocessing step to facilitate comparison between states. Heavier weight is placed on more recent training data, to account for nonstationarity in the underlying process. A lasso penalty is added to induce variable selection and prevent overfitting. Quantiles are computed using a residual (Gaussian) bootstrap, separately for each location. Revised in later submissions to fit into a simpler framework built on quantile autoregression framework with additional covariates and a training window.
+    County inc case forecasts - A quantile regression model fit jointly across selected counties using (1) case counts, (2) self-reported COVID symptom rates, (3) doctor's visits rates related to COVID symptoms, and (4) county population. Features (1-3) are taken at various lags. Furthermore, the slopes of features (1-3) are computed over the preceding month and included in the model to provide a sense of the virus's momentum. Revised in later submissions to fit into a simpler framework built on quantile autoregression framework with additional covariates and a training window.
+    All data used are available in client packages for the Delphi COVIDcast Epidata API (http://covidcast.cmu.edu). Signal (2) is administered with the support of Facebook. No assumptions are made regarding reopening or governmental interventions.
+  data_inputs: US Dept. of Health and Human Services (confirmed COVID-19 hospitalization
+    admissions), JHU-CSSE (confirmed case counts and deaths), Delphi COVIDcast health
+    system partners, Delphi's US COVID-19 Trends and Impact Survey (CTIS), U.S. Census
+    Bureau (state and county population data)
+ensemble_of_hub_models: no

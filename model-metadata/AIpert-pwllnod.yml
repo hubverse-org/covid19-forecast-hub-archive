@@ -1,0 +1,21 @@
+team_name: AIpert.org team
+team_abbr: AIpert
+model_name: Piecewise Log Linear of Death
+model_abbr: pwllnod
+model_contributors:
+- name: Quoc Tran
+  affiliation: Lead - WalmartLabs
+  email: ttquoc@gmail.com
+- name: Huong Huynh
+  affiliation: Virtual Power System
+- name: Lam Ho
+  affiliation: Dalhousie University-Dept. of Maths and Stats
+  email: lam.ho@dal.ca
+website_url: https://covid19.aipert.org
+repo_url: https://github.com/QuocTran/COVID-19
+license: mit
+team_model_designation: primary
+model_details:
+  methods: Piecewise Log Linear of Death using policy change dates
+  data_inputs: JHU
+ensemble_of_hub_models: no

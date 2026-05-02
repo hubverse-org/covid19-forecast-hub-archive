@@ -1,0 +1,15 @@
+team_name: HKUST
+team_abbr: HKUST
+model_name: DNN
+model_abbr: DNN
+model_contributors:
+- name: Chung-Yan Fong
+- name: Dit-Yan Yeung
+website_url: https://cfong32.github.io/HKUST-DNN/
+license: cc-by-4.0
+team_model_designation: primary
+model_details:
+  methods: Based on observations of deaths, cases, and hospitalization data since
+    the outbreak, we have trained deep neural networks to forecast state-level cumulative
+    deaths.
+ensemble_of_hub_models: no

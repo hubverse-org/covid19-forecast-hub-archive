@@ -1,0 +1,41 @@
+team_name: IQVIA ACOE
+team_abbr: IQVIA_ACOE
+model_name: STAN
+model_abbr: STAN
+model_contributors:
+- name: Junyi Gao
+  affiliation: IQVIA
+- name: Rakshith Sharma
+  affiliation: Georgia Institute of Technology
+- name: Cheng Qian
+  affiliation: IQVIA
+  email: alextoqc@gmail.com
+- name: Lucas M. Glass
+  affiliation: IQVIA
+- name: Jeffrey Spaeder
+  affiliation: IQVIA
+- name: Justin Romberg
+  affiliation: Georgia Institute of Technology
+- name: Jimeng Sun
+  affiliation: University of Illinois, Urbana-Champaign
+- name: Cao Xiao
+  affiliation: IQVIA
+website_url: https://www.iqvia.com/landing/analytics-center-of-excellence
+license: cc-by-4.0
+citation: https://arxiv.org/abs/2008.04215
+team_model_designation: primary
+model_details:
+  methods: Spatio-Temporal Attention Network
+  methods_long: We proposed a spatio-temporal attention network (STAN) for state-level
+    pandemic prediction. Our method aims at addressing these limitations and making
+    earlier and more accurate pandemic outbreak predictions by (1) using patients
+    EHR data from different states that encode local disease status and medical resource
+    utilization condition; (2) considering demographic similarity and geographical
+    proximity between locations; and (3) integrating pandemic transmission dynamics
+    into deep learning models. STAN uses an attention-based graph convolutional network
+    to capture geographical and temporal trends and predict the number of cases for
+    a fixed number of days into the future. We also designed a physical law-based
+    loss term for enhancing long-term prediction.
+  data_inputs: JHU CSSE confirmed case, recovered cases and deaths, state population,
+    state population density, daily reported claims data from IQVIA
+ensemble_of_hub_models: no

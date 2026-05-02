@@ -1,0 +1,15 @@
+team_name: Johns Hopkins University Applied Physics Lab
+team_abbr: JHUAPL
+model_name: Morris
+model_abbr: Morris
+model_contributors:
+- name: Matt Kinsey
+  affiliation: JHU/APL
+website_url: https://jhuapl.edu
+license: mit
+team_model_designation: secondary
+model_details:
+  methods: State and national level neural forecasting model using covariate timeseries
+    to forecast incident hospitalizations. Hyperparameters are optimized to minimize
+    weighted interval score.
+ensemble_of_hub_models: no

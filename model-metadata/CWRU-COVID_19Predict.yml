@@ -1,0 +1,20 @@
+team_name: CWRU
+team_abbr: CWRU
+model_name: COVID_19Predict
+model_abbr: COVID_19Predict
+model_contributors:
+- name: Jurgen Bosch
+  affiliation: CWRU
+- name: Austin Wilson
+  affiliation: CWRU
+- name: Peter Zimmerman
+website_url: https://covid19predict.com/dashboard
+license: cc-by-4.0
+citation: https://doi.org/10.1101/2020.09.09.20191593
+institution_affil: Case Western Reserve University (CWRU)
+team_model_designation: primary
+model_details:
+  methods: We utilize the accumulation of cases and deaths to provide dynamic 7-day
+    short-term predictions on outcomes across national, state, and county administrative
+    levels.
+ensemble_of_hub_models: no

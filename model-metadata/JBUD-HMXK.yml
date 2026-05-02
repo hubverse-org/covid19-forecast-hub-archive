@@ -1,0 +1,16 @@
+team_name: JBUD
+team_abbr: JBUD
+model_name: HMXK
+model_abbr: HMXK
+model_contributors:
+- name: Jozef Budzinski
+  email: jbudzin@gmail.com
+website_url: https://joebud.github.io/covid-19-analyses/
+license: cc-by-nc-4.0
+team_model_designation: primary
+model_details:
+  methods: 'Heavily modified infection-age SIR-X model with waning immunity, vaccinations,
+    seasonality and undetected cases. '
+  methods_long: See GitHub for full description
+  data_inputs: See GitHub for full description
+ensemble_of_hub_models: no

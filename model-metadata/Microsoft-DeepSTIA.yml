@@ -1,0 +1,21 @@
+team_name: Microsoft
+team_abbr: Microsoft
+model_name: DeepSTIA
+model_abbr: DeepSTIA
+model_contributors:
+- name: Zhifeng Gao
+- name: Chaozhuo Li
+- name: Wei Cao
+- name: Shun Zheng
+- name: Jiang Bian
+- name: Xing Xie
+- name: Tie-Yan Liu
+- name: Shun Zhang
+- name: Juan Lavista Ferres
+website_url: https://www.microsoft.com/en-us/ai/ai-for-health
+license: cc-by-4.0
+team_model_designation: primary
+model_details:
+  methods: Our model is a deep spatio-temporal network. More details can be found
+    in [the paper](https://dl.acm.org/doi/10.1145/3459637.3481927).
+ensemble_of_hub_models: no

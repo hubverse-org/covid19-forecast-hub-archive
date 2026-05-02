@@ -1,0 +1,24 @@
+team_name: AIMdyn
+team_abbr: AIMdyn
+model_name: SlidingKoopman
+model_abbr: SlidingKoopman
+model_contributors:
+- name: Igor Mezic
+  email: mezici@aimdyn.com
+- name: Maria Fonoberova
+  email: mfonoberova@aimdyn.com
+- name: Allan Avila
+  email: allan@aimdyn.com
+- name: Dean Huang
+  email: huangd@aimdyn.com
+- name: Steven Liu
+- name: Alan Cao
+  email: acao@aimdyn.com
+- name: Zlatko Drmac
+  email: zlatko.drmac@math.hr
+website_url: https://aimdyn.com/
+license: cc-by-nc-nd-4.0
+team_model_designation: primary
+model_details:
+  methods: Our model is a sliding window model based on Koopman operator methods.
+ensemble_of_hub_models: no

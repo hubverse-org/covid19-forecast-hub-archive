@@ -1,0 +1,25 @@
+team_name: University of Central Florida
+team_abbr: UCF
+model_name: AI-Powered and Epidemiology-Informed Modeling System
+model_abbr: AEM
+model_contributors:
+- name: Dongdong Wang
+  affiliation: UCF
+- name: Timothy Summer
+  affiliation: UCF
+- name: Shunpu Zhang
+  affiliation: UCF
+  email: Shunpu.Zhang@ucf.edu
+- name: Liqiang Wang
+  affiliation: UCF
+  email: Liqiang.Wang@ucf.edu
+website_url: https://github.com/UCF-AEM/UCF-AEM
+license: cc-by-4.0
+team_funding: UCF COVID-19 Artificial Intelligence and Big Data Seed Funding Program
+  (Dr. Liqiang Wang and Dr. Shunpu Zhang)
+team_model_designation: primary
+model_details:
+  methods: This model leverages conventional SEIR model with mixture modeling and
+    distilled the knowledge of complex mixture modeling system with ensemble neural
+    networks.
+ensemble_of_hub_models: no

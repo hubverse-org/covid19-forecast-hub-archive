@@ -1,0 +1,17 @@
+team_name: One Health Trust
+team_abbr: OHT
+model_name: N-BEATS-xlearn
+model_abbr: nbx
+model_contributors:
+- name: Alexander Tulchinsky
+  affiliation: One Health Trust
+- name: Eili Klein
+  affiliation: One Health Trust & Johns Hopkins School of Medicine
+website_url: https://github.com/CDDEP-DC
+license: cc-by-nc-4.0
+team_model_designation: primary
+model_details:
+  methods: Neural network based on the N-BEATS (Oreshkin et al. 2000) model for univariate
+    time series, with exogenous predictors processed using an LSTM encoder-decoder
+    network.
+ensemble_of_hub_models: no

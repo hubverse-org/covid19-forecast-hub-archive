@@ -1,0 +1,20 @@
+team_name: UT
+team_abbr: UT
+model_name: Osiris
+model_abbr: Osiris
+model_contributors:
+- name: Graham Gibson
+  affiliation: Los Alamos National Laboratory
+- name: Spencer Woody
+  affiliation: Amgen Inc.
+- name: Oluwasegun Ibrahim
+  affiliation: UT Austin
+website_url: https://covid-19.tacc.utexas.edu
+license: cc-by-4.0
+team_model_designation: primary
+model_details:
+  methods: A semi-mechanistic model that combines aspects of mechanistic and statistical
+    models.
+  methods_long: See GitHub for full description
+  data_inputs: HHS hospitalization
+ensemble_of_hub_models: no

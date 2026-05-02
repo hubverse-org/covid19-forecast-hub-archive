@@ -1,0 +1,37 @@
+team_name: COVIDhub_CDC
+team_abbr: COVIDhub_CDC
+model_name: ensemble
+model_abbr: ensemble
+model_contributors:
+- name: Evan L. Ray
+- name: Nicholas Reich
+- name: Aaron Gerding
+- name: Estee Y. Cramer
+- name: Nutcha Wattanachit
+- name: Pragati Prasad
+- name: Velma Lopez
+- name: Jo Walker
+- name: Alex Webber
+- name: Matthew Biggerstaff
+  affiliation: mbiggerstaff@cdc.gov
+- name: Michael Johansson
+  affiliation: mjohansson@cdc.gov
+website_url: https://www.cdc.gov/coronavirus/2019-ncov/science/forecasting/mathematical-modeling.html
+license: cc-by-4.0
+team_model_designation: primary
+model_details:
+  methods: An ensemble, or model combination, of submitted forecasts to the COVID-19
+    Forecast Hub.
+  methods_long: This model collects the forecasts that have been communicated by the
+    U.S. Centers for Disease Control and Prevention. Prior to July 28, 2020, this
+    model's forecasts were calculated as an equally weighted mean of forecasts from
+    all eligible models (COVIDhub-4_week_ensemble). Starting the week of July 28,
+    2020, an equally weighted median of eligible forecasts was used (COVIDhub-4_week_ensemble).
+    Starting the week of November 15, 2021, an equally weighted median of eligible
+    forecasts was used for forecasts of cases and hospitalizations (COVIDhub-4_week_ensemble),
+    and a weighted median was used for forecasts of incident and cumulative deaths
+    (COVIDhub-trained_ensemble). The weighted median calculates model weights based
+    on their relative performance over the 12 weeks prior to the forecast date.
+  data_inputs: Forecasts of weekly cases and deaths, cumulative deaths, and daily
+    hospitalizations from other models.
+ensemble_of_hub_models: yes

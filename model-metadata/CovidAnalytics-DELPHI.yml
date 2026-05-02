@@ -1,0 +1,38 @@
+team_name: CovidAnalytics at MIT
+team_abbr: CovidAnalytics
+model_name: DELPHI
+model_abbr: DELPHI
+model_contributors:
+- name: Michael Lingzhi Li
+  affiliation: Massachusetts Institute of Technology
+  email: mlli@mit.edu
+- name: Hamza Tazi Bouardi
+  affiliation: Massachusetts Institute of Technology
+- name: Omar Skali Lami
+  affiliation: Massachusetts Institute of Technology
+- name: Thomas A. Trikalinos
+  affiliation: Brown University
+- name: Nikolaos K. Trichakis
+  affiliation: Massachusetts Institute of Technology
+- name: Dimitris Bertsimas
+  affiliation: Massachusetts Institute of Technology
+website_url: https://www.covidanalytics.io/
+repo_url: https://github.com/COVIDAnalytics/DELPHI
+license: apache-2.0
+citation: https://www.covidanalytics.io/DELPHI_documentation_pdf
+twitter_handles: covid_analytics
+team_model_designation: primary
+model_details:
+  methods: 'This model predicts based on an SEIR model augmented with underdetection
+    and interventions. Projections account for reopening and assume interventions
+    would be re-enacted if cases continue to climb. '
+  methods_long: 'This model makes predictions for future cases based on a heavily
+    modified SEIR model. New states are added to the SEIR model to account for cases
+    that went undetected, and an explicit death state is included. The infection rate
+    is corrected with a nonlinear curve that represents the governmental and societal
+    response (which is assumed to change according to the magnitude of the outbreak).
+    Key parameters for the disease are fixed using a metanalysis  conducted by the
+    CovidAnalytics group of over 150 parameters while epidemiological parameters are
+    fitted to hisotical death counts and detected cases. '
+  data_inputs: JHU CSSE case and death data
+ensemble_of_hub_models: no

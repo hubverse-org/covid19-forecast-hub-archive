@@ -1,0 +1,62 @@
+team_name: JHU_UNC_GAS
+team_abbr: JHU_UNC_GAS
+model_name: StatMechPool
+model_abbr: StatMechPool
+model_contributors:
+- name: Justin Lessler
+  affiliation: JHU
+- name: Jess Edwards
+  affiliation: UNC
+  email: jkedwar@email.unc.edu
+- name: Keya Joshi
+  affiliation: JHU/Harvard
+- name: Claire Smith
+  affiliation: JHU
+- name: Paul Zivich
+  affiliation: JHU
+- name: Marc Coram
+  affiliation: Google
+  email: mcoram@google.com
+- name: Ellen Klein
+  affiliation: Google
+- name: Michael Brenner
+  affiliation: Harvard/Google
+- name: Lusann Yang
+  affiliation: Google
+- name: Anton Geraschenko
+  affiliation: Google
+- name: Stephan Hoyer
+  affiliation: Google
+- name: Dmitri Kochkov
+  affiliation: Google
+- name: Jamie Smith
+  affiliation: Google
+website_url: https://github.com/HopkinsIDD/EpiForecastStatMech
+repo_url: https://github.com/HopkinsIDD/EpiForecastStatMech
+license: apache-2.0
+team_model_designation: primary
+model_details:
+  methods: This model jointly trains over locations, fitting to both  mechanistic
+    and statistical models. The statistical model  enforces  similar places having  similar
+    mechanistic coefficients.
+  methods_long: The model uses a detailed list of demographic parameters for US Counties,
+    with demographic parameters taken from https://github.com/Yu-Group/covid19-severity-prediction/
+    and other variables (weather, mobility, etc) taken from the Opencovid Data Repo.   The
+    prediction rollouts from the model are generated from the mechanistic model, where
+    the allowed range of mechanistic parameters is fit on historical data for coverage.
+    To arrive at the best model, we experimented with a large range of mechanistic
+    and statistical models and competed these models against each other. For mechanistic
+    models, we tried SEIR models and curve fitting models. For the statistical model,
+    we tried linear model and  a simple multilayer perceptron. We experimented with
+    statistical models enforcing constraints among different numbers of the mechanistic
+    parameters. We also tried models with priors and without. We also varied how much
+    of the trajectories are fitted with the model (last 4 week, 6 week, and so forth).
+    Including all combinatorial choices, we ended up with 450 different models.  We
+    evaluated model performance with split dates trained in the past and chose the
+    best models. The best models ended up being (i) a multiplicative growth model
+    for the mechanistic term with a linear statistical model in which the statistical
+    model enforces constraints on all mechanistic parameters. (ii) A curve fitting
+    mode [CITE paper] with a pseudolikelihood prior, together with a linear statistical
+    model on all mechanistic parameters. The predictions here ensemble these two models.
+  data_inputs: https://github.com/GoogleCloudPlatform/covid-19-open-data
+ensemble_of_hub_models: no

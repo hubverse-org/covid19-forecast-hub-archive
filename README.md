@@ -33,7 +33,7 @@ regarding attribution of the source forecasts.
 ├── hub-config/                 hubverse config (admin, tasks, model-metadata schema)
 ├── auxiliary-data/             location lookup (FIPS, name, population)
 ├── model-metadata/             one YAML per submitting team-model
-├── model-output/               <team-model>/<reference_date>-<team-model>.parquet
+├── model-output/               <team-model>/<forecast_date>-<team-model>.parquet
 ├── target-data/                time-series.csv + oracle-output.csv
 ├── docs/                       known-validation-issues.md
 └── src/                        R scripts that built the archive
@@ -43,24 +43,21 @@ regarding attribution of the source forecasts.
 
 | Column | Type | Notes |
 |---|---|---|
-| `reference_date` | date | Original `forecast_date` from the legacy hub |
+| `forecast_date` | date | Date the forecast was submitted (legacy `forecast_date`, kept under its original name rather than renamed to `reference_date`) |
 | `target` | string | One of `inc death`, `cum death`, `inc case`, `inc hosp` |
 | `horizon` | int | Time-step ahead. Weekly for deaths/cases, daily for hosp |
 | `location` | string | FIPS code (`"01"`–`"56"`, `"60"`–`"78"` territories, `"US"`, or 5-digit county) |
+| `target_end_date` | date | Date the forecast targets. For weekly targets this is the MMWR-week Saturday corresponding to `(forecast_date, horizon)`; for `inc hosp` it equals `forecast_date + horizon` days. Materialized in every file rather than declared as a `derived_task_ids`, because the legacy weekly relationship is not a simple `forecast_date + horizon * unit` offset |
 | `output_type` | string | `quantile`, `median`, or `mean` |
 | `output_type_id` | double | Quantile value (0.01–0.99) for `quantile`; `NA` otherwise |
 | `value` | double | Forecast value |
-
-Hubverse-standard column names; `target_end_date` is omitted because it's
-derivable from `reference_date + horizon * unit` (7 days for deaths/cases,
-1 day for hosp).
 
 ### How point forecasts were classified
 
 The legacy hub's `type=point` rows are emitted as either `median` or `mean`
 on a **per-file basis**:
 
-- If every `(reference_date, location, target, horizon)` group with a point
+- If every `(forecast_date, location, target, horizon)` group with a point
   row also has a `quantile=0.5` row whose value matches the point value
   (relative tolerance `1e-6`), all point rows in that file are emitted as
   `output_type=median`.
@@ -90,7 +87,7 @@ The archive preserves the legacy submissions as-is. Re-validating against
 the strict hubverse schema surfaces a small number of files (~3.7% of the
 archive) with issues that were latent in the original data:
 
-- **234** files have at least one `(target, reference_date, location, horizon)`
+- **234** files have at least one `(target, forecast_date, location, horizon)`
   group missing one or more required quantiles
 - **85** files have non-monotonic quantiles (e.g. the 0.10 quantile is
   greater than the 0.05 quantile)

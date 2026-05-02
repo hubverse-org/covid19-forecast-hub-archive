@@ -1,0 +1,41 @@
+team_name: University of Southern California
+team_abbr: USC
+model_name: SI_kJalpha
+model_abbr: SI_kJalpha
+model_contributors:
+- name: Ajitesh Srivastava
+- name: Frost Tianjian Xu
+website_url: https://scc-usc.github.io/ReCOVER-COVID-19
+repo_url: https://github.com/scc-usc/ReCOVER-COVID-19
+license: mit
+citation: https://arxiv.org/abs/2007.05180
+team_funding: Supported by US National Science Foundation Award No. 2027007 (RAPID)
+team_model_designation: primary
+model_details:
+  methods: A heterogeneous infection rate model with vaccines and multiple variants
+    and adaptive to changing trends. Uses genomics data to estimate the prevelance
+    of the variants.
+  methods_long: We use our own epidemic model called SI-kJalpha. Our model can consider
+    the effect of many complexities of the epidemic process and yet be simplified
+    to a few parameters that are learned using fast linear regressions. Therefore,
+    our approach can learn and generate forecasts extremely quickly. On a 2 core desktop
+    machine, our approach takes only 3.18s to tune hyper-parameters, learn parameters
+    and generate 100 days of forecasts of reported cases and deaths for all the states
+    in the US. The total execution time for 184 countries is 11.83s and for more than
+    3000 US counties is 30s. Despite being fast, the accuracy of our forecasts is
+    on par with the state-of-the-art as demonstrated on the leaderboard page. at https://scc-usc.github.io/ReCOVER-COVID-19.
+    For each state, we model hospitalizations as a separate compartment, as a linear
+    function of recent cases with heterogeneous rates. This means that for some hyper-parameter
+    J, those who were infected at time t-1 to t-J will have a separate rate from those
+    infected at t-(J+1) to t-2J, and so on. This is similar to how we perform death
+    forecasts. For long-term forecasts (more than a few days in the future), the cases
+    are forecasted first based on our SIkJalpha model, which forms the input to hospitalization
+    prediction. While we account for changing trends by putting more emphasis on recently
+    seen data, we assume that the trends will remain the same in the future for our
+    point forecasts. We try to account for changing trends in the future in our quantile
+    forecasts by modeling the empirical error our approach makes using a Random Forest.
+    Genomics data is used to estimate the prevelance of all the variants per state.
+    A logistic regression model is used to fit the number of samples for each variant
+    on a given day.
+  data_inputs: Cases and deaths - JHU, hospitalization - HHS time-series
+ensemble_of_hub_models: no

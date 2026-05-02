@@ -1,0 +1,100 @@
+team_name: Google Cloud AI
+team_abbr: Google_Harvard
+model_name: Google-Harvard CPF
+model_abbr: CPF
+model_contributors:
+- name: Andrew Max
+  affiliation: Google Cloud AI
+  email: amax@google.com
+- name: Arkady Epshteyn
+  affiliation: Google Cloud AI
+- name: Brian Kang
+  affiliation: Google Cloud AI
+  email: briankang@google.com
+- name: Chun-Liang Li
+  affiliation: Google Cloud AI
+  email: chunliang@google.com
+- name: Dario Sava
+  affiliation: Google Cloud AI
+- name: David Parish
+  affiliation: Google Cloud AI
+- name: Derrick Miller
+  affiliation: Google Cloud
+  email: millerderrick@google.com
+- name: Elli Kanal
+  affiliation: Google Cloud AI
+  email: ekanal@google.com
+- name: Hanchao Liu
+  affiliation: Google Cloud AI
+  email: hanchaoliu@google.com
+- name: Hootan Nakhost
+  affiliation: Google Cloud AI
+  email: hootan@google.com
+- name: Isaac Jones
+  affiliation: Google Cloud AI
+- name: Jeremy Lai
+  affiliation: Google Cloud AI
+  email: jeremylai@google.com
+- name: Jasmin Repenning
+  affiliation: Google Cloud AI
+  email: jrepenning@google.com
+- name: Jinsung Yoon
+  affiliation: Google Cloud AI
+- name: Karthik Ramasamy
+  affiliation: Google Cloud AI
+  email: cartick@google.com
+- name: Leyou Zhang
+  affiliation: Google Cloud AI
+  email: leyouz@google.com
+- name: Long Le
+  affiliation: Google Cloud AI
+  email: longtle@google.com
+- name: Martin Nikoltchev
+  affiliation: Google Cloud AI
+  email: mnikoltchev@google.com
+- name: Matthew Siegler
+  affiliation: Google Cloud AI AI
+- name: Mike Dusenberry
+  affiliation: Google Cloud AI
+- name: Nate Yoder
+  affiliation: Google Cloud AI
+  email: nyoder@google.com
+- name: Ola Rozenfeld
+  affiliation: Google Cloud AI
+  email: olaola@google.com
+- name: Priya Rangaswamy
+  affiliation: Google Cloud AI
+  email: priyar@google.com
+- name: Raj Sinha
+  affiliation: Google Cloud AI
+- name: Rand Xie
+  affiliation: Google Cloud AI
+  email: randxie@google.com
+- name: Sercan Arik
+  affiliation: Google Cloud AI
+- name: ''
+- name: Shashank Singh
+  affiliation: Google Cloud AI
+- name: ''
+- name: Thomas Tsai
+  affiliation: Havard University
+- name: Tomas Pfister
+  affiliation: Google Cloud AI
+- name: Vik Menon
+  affiliation: Google Cloud AI
+- name: Vishal Karande
+  affiliation: Google Cloud AI
+- name: Yash Sonthalia
+  affiliation: Google Cloud AI
+- name: Yong Li
+  affiliation: Google Cloud AI
+  email: yyongli@google.com
+website_url: https://cloud.google.com/blog/products/ai-machine-learning/google-cloud-is-releasing-the-covid-19-public-forecasts
+license: other
+citation: https://arxiv.org/abs/2008.00646
+team_model_designation: primary
+model_details:
+  methods: Our model improves upon standard compartmental models by using temporally
+    and spatially rich data, and integrating covariate encodings into compartment
+    transitions via end-to-end learning.
+ensemble_of_hub_models: no

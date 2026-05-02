@@ -1,0 +1,18 @@
+team_name: Institute of Business Forecasting
+team_abbr: IBF
+model_name: Time Series Model with a unique technique to capture the pattern and using
+  it to prepare the forecast.
+model_abbr: TimeSeries
+model_contributors:
+- name: Dr. Chaman L. Jain
+  affiliation: IBF
+  email: cjain@ibf.org
+website_url: https://ibf.org
+license: mit
+team_funding: Institute of Business Forecasting
+team_model_designation: primary
+model_details:
+  methods: Time Series Model with proprietary modifications
+  methods_long: Time Series Model with proprietary modifications
+  data_inputs: WorldoMeter.com
+ensemble_of_hub_models: no

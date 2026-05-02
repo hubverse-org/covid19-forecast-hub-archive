@@ -1,0 +1,16 @@
+team_name: USF-STPM
+team_abbr: USF
+model_name: Spatial Temporal Model
+model_abbr: STPM
+model_contributors:
+- name: Dr. Ming Ji mji@usf.edu
+- name: Siva Allam allams@usf.edu
+website_url: https://github.com/SpatialTemporalModel/STPM-COVID
+license: cc-by-nc-4.0
+team_model_designation: primary
+model_details:
+  methods: State-level prediction model that can predict the number of cases per state.This
+    model can work by taking less amount of data available. So, This model can be
+    used immediately after pandemic.
+  data_inputs: https://coronavirus.1point3acres.com/, US Census (population; mobility)
+ensemble_of_hub_models: no
