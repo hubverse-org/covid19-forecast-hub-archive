@@ -4,12 +4,12 @@
 # at ~18s/file for our R2 inc-hosp model_task), and replaces it with a
 # vectorised dplyr equivalent that asks the same question:
 #
-#   For every (target, reference_date, location, horizon) group present in
+#   For every (target, forecast_date, location, horizon) group present in
 #   the file, are all of that target's REQUIRED quantile output_type_id
 #   values present?
 #
 # That is the only completeness obligation on our hub — `mean` and `median`
-# are is_required=FALSE; reference_date/location/horizon are all optional.
+# are is_required=FALSE; forecast_date/location/horizon are all optional.
 #
 # The custom check is sourced into each parallel worker and the per-file
 # pass/fail/notes log lands in src/logs/validate_submissions_fast_<date>.csv.
@@ -45,7 +45,7 @@ REQUIRED_Q <- list(
 fast_req_check <- function(tbl) {
   q <- tbl[tbl$output_type == "quantile", , drop = FALSE]
   if (nrow(q) == 0L) {
-    return(tibble::tibble(target = character(), reference_date = as.Date(character()),
+    return(tibble::tibble(target = character(), forecast_date = as.Date(character()),
                           location = character(), horizon = integer(),
                           missing_qs = character()))
   }
@@ -57,20 +57,20 @@ fast_req_check <- function(tbl) {
     if (is.null(rq)) next
 
     g <- q[q$target == tgt, , drop = FALSE] |>
-      group_by(reference_date, location, horizon) |>
+      group_by(forecast_date, location, horizon) |>
       summarise(present = list(unique(qid)), .groups = "drop")
     g$missing_qs <- vapply(g$present, function(p) {
       m <- setdiff(rq, p)
       if (length(m) == 0L) "" else paste(sort(m), collapse = ",")
     }, character(1))
-    g <- g[nzchar(g$missing_qs), c("reference_date", "location", "horizon", "missing_qs"), drop = FALSE]
+    g <- g[nzchar(g$missing_qs), c("forecast_date", "location", "horizon", "missing_qs"), drop = FALSE]
     if (nrow(g) > 0L) {
       g$target <- tgt
       failed[[tgt]] <- g
     }
   }
   if (length(failed) == 0L) {
-    return(tibble::tibble(target = character(), reference_date = as.Date(character()),
+    return(tibble::tibble(target = character(), forecast_date = as.Date(character()),
                           location = character(), horizon = integer(),
                           missing_qs = character()))
   }

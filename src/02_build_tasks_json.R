@@ -230,7 +230,8 @@ rounds_list <- mapply(build_round,
 
 cfg <- create_config(
   do.call(create_rounds, unname(rounds_list)),
-  output_type_id_datatype = "double"
+  output_type_id_datatype = "double",
+  derived_task_ids = "target_end_date"
 )
 
 dest <- here::here("hub-config", "tasks.json")
