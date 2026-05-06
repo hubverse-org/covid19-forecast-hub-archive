@@ -5,12 +5,14 @@ Runs `hubValidations::validate_submission` over every parquet file under
 
 ## Files
 
+- `prepare_unity.sh` — One-shot install of hubValidations + deps into
+  `$R_LIBS_USER`. Run *once*, before the array job.
 - `validate_chunk.R` — Worker script. Validates a round-robin slice of the
   full file list (slice = `(SLURM_ARRAY_TASK_ID, N_TASKS)`); writes one
   `chunk_NNNN.csv` per task with columns
   `file, ok, n_failed, elapsed_sec, first_error`.
 - `submit_unity.sbatch` — Slurm submission script. Defaults to a 200-task
-  array, 4 h walltime, 8 GB / task, partition `cpu`. Adjust as needed.
+  array, 8 h walltime, 8 GB / task, partition `cpu`. Adjust as needed.
 - `aggregate_logs.R` — After all chunks finish, collapse them into a
   single `validate_submissions_full.csv` and print a summary.
 
@@ -19,7 +21,14 @@ Runs `hubValidations::validate_submission` over every parquet file under
 From the hub root on a Unity login node:
 
 ```bash
-# Submit the array (logs land in src/logs/cluster_<JOB_ID>/)
+# 1. One-shot install (do this once per account; ~30–60 min compile time)
+sbatch src/cluster/prepare_unity.sh
+# wait for it to finish:
+#   squeue -u "${USER}" -j <INSTALL_JOB_ID>
+# verify:
+#   tail src/logs/install-<INSTALL_JOB_ID>.out
+
+# 2. Submit the validation array (logs land in src/logs/cluster_<JOB_ID>/)
 sbatch src/cluster/submit_unity.sbatch
 
 # Track progress
@@ -28,6 +37,14 @@ ls src/logs/cluster_<JOB_ID>/chunk_*.csv | wc -l   # 200 when complete
 
 # Aggregate when done
 Rscript src/cluster/aggregate_logs.R src/logs/cluster_<JOB_ID>
+```
+
+You can also chain them so the array runs automatically once install
+finishes:
+
+```bash
+INSTALL_ID=$(sbatch --parsable src/cluster/prepare_unity.sh)
+sbatch --dependency=afterok:${INSTALL_ID} src/cluster/submit_unity.sbatch
 ```
 
 ## Tuning

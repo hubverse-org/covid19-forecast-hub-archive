@@ -38,19 +38,12 @@ mkdir -p "${LOG_DIR}"
 # offers (`module avail r` to list).
 module load r/4.4.0 || module load r
 
-# Use a writable lib path so install.packages works the first time.
+# R library must already exist — install via prepare_unity.sh first.
 export R_LIBS_USER="${R_LIBS_USER:-${HOME}/R/library}"
-mkdir -p "${R_LIBS_USER}"
-
-# One-shot dependency install on the first task; cheap no-op afterwards.
-if [[ "${SLURM_ARRAY_TASK_ID}" == "1" ]]; then
-  Rscript -e 'pkgs <- c("hubValidations","arrow","dplyr","readr","tibble");
-              missing <- pkgs[!vapply(pkgs, requireNamespace, logical(1), quietly=TRUE)];
-              if (length(missing)) install.packages(missing,
-                                                     repos = c(
-                                                       "https://hubverse-org.r-universe.dev",
-                                                       "https://cloud.r-project.org"
-                                                     ))'
+if ! Rscript -e 'quit(status = !requireNamespace("hubValidations", quietly = TRUE))'; then
+  echo "ERROR: hubValidations not installed in ${R_LIBS_USER}." >&2
+  echo "Run: sbatch src/cluster/prepare_unity.sh" >&2
+  exit 2
 fi
 
 export HUB_PATH="${SLURM_SUBMIT_DIR}"
