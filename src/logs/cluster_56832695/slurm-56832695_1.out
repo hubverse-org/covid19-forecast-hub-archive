@@ -947,3 +947,9 @@ PKG_LIBS=-L/tmp/RtmpshQVbH/R.INSTALL33d0e618831483/arrow/libarrow/arrow-24.0.0/l
 /usr/bin/g++ -std=gnu++17 -I"/modules/spack/packages/linux-ubuntu24.04-x86_64_v3/gcc-13.2.0/r-4.4.0-wkdjmaxzsswhi5frlsj5xddmj2zyaguj/rlib/R/include" -DNDEBUG  -I'/home/nick_umass_edu/R/library/cpp11/include' -I'/home/nick_umass_edu/R/library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c write_delim.cpp -o write_delim.o
 /usr/bin/g++ -std=gnu++17 -shared -L/modules/spack/packages/linux-ubuntu24.04-x86_64_v3/gcc-13.2.0/r-4.4.0-wkdjmaxzsswhi5frlsj5xddmj2zyaguj/rlib/R/lib -Wl,-rpath,/modules/spack/packages/linux-ubuntu24.04-x86_64_v3/gcc-13.2.0/r-4.4.0-wkdjmaxzsswhi5frlsj5xddmj2zyaguj/rlib/R/lib -o readr.so Collector.o CollectorGuess.o Iconv.o LocaleInfo.o Reader.o Source.o Tokenizer.o TokenizerDelim.o TokenizerFwf.o TokenizerWs.o connection.o cpp11.o datetime.o grisu3.o init.o parse.o read.o type_convert.o write.o write_delim.o -L/modules/spack/packages/linux-ubuntu24.04-x86_64_v3/gcc-13.2.0/r-4.4.0-wkdjmaxzsswhi5frlsj5xddmj2zyaguj/rlib/R/lib -lR
 [task 1/200] hub=/home/nick_umass_edu/covid19-forecast-hub-archive files=45 (of 8821 total)
+  [10/45] last=COVIDhub-trained_ensemble/2023-07-17-COVIDhub-trained_ensemble.parquet ok=TRUE elapsed=38.2s
+  [20/45] last=IBF-TimeSeries/2020-11-30-IBF-TimeSeries.parquet ok=TRUE elapsed=4.6s
+  [30/45] last=MUNI-ARIMA/2021-08-02-MUNI-ARIMA.parquet ok=TRUE elapsed=19.7s
+  [40/45] last=UMass-sarix/2022-07-25-UMass-sarix.parquet ok=TRUE elapsed=51.3s
+  [45/45] last=YYG-ParamSearch/2020-09-15-YYG-ParamSearch.parquet ok=TRUE elapsed=19.4s
+[task 1] wrote src/logs/cluster_56832695/chunk_0001.csv (45 rows; 45 ok / 0 fail)

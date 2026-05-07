@@ -1,0 +1,64 @@
+Loading bzip2 version 1.0.8
+Loading curl version 8.5.0
+Loading icu4c version 67.1
+Loading gettext version 0.21
+Loading openssl version 3.0.13
+Loading krb5 version 1.20.1
+Loading libtirpc version 1.3.3
+Loading ncurses version 6.5
+Loading openblas version 0.3.26
+Loading openjdk version 11.0.20.1_1
+Loading pcre2 version 10.43
+Loading readline version 8.2
+Loading which version 2.21
+Loading xz version 5.4.6
+Loading zlib-ng version 2.1.6
+Loading r version 4.4.0
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.
+
+── COVIDhub_CDC-ensemble/2020-04-13-COVIDhub_CDC-ensemble.parquet ────
+
+✖ [req_vals]: Required task ID/output type/output type ID combinations missing.
+  See `missing` attribute for details.
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.
+✔ All validation checks have been successful.

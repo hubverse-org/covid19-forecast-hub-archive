@@ -1,0 +1,7 @@
+[task 110/200] hub=/home/nick_umass_edu/covid19-forecast-hub-archive files=44 (of 8821 total)
+  [10/44] last=CU-nochange/2021-03-07-CU-nochange.parquet ok=TRUE elapsed=484.6s
+  [20/44] last=IHME-CurveFit/2020-05-08-IHME-CurveFit.parquet ok=FALSE elapsed=9.4s
+  [30/44] last=MUNI-ARIMA/2024-01-08-MUNI-ARIMA.parquet ok=TRUE elapsed=21.0s
+  [40/44] last=UMass-trends_ensemble/2022-05-30-UMass-trends_ensemble.parquet ok=TRUE elapsed=37.9s
+  [44/44] last=YYG-ParamSearch/2020-06-16-YYG-ParamSearch.parquet ok=TRUE elapsed=15.6s
+[task 110] wrote src/logs/cluster_56853111/chunk_0110.csv (44 rows; 42 ok / 2 fail)

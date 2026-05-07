@@ -1,0 +1,7 @@
+[task 28/200] hub=/home/nick_umass_edu/covid19-forecast-hub-archive files=44 (of 8821 total)
+  [10/44] last=COVIDhub-trained_ensemble/2024-01-22-COVIDhub-trained_ensemble.parquet ok=TRUE elapsed=30.2s
+  [20/44] last=IEM_MED-CovidProject/2020-12-21-IEM_MED-CovidProject.parquet ok=TRUE elapsed=65.5s
+  [30/44] last=MUNI-ARIMA/2022-02-07-MUNI-ARIMA.parquet ok=TRUE elapsed=64.2s
+  [40/44] last=UMass-sarix/2023-02-13-UMass-sarix.parquet ok=TRUE elapsed=40.7s
+  [44/44] last=WalmartLabsML-LogForecasting/2021-01-31-WalmartLabsML-LogForecasting.parquet ok=TRUE elapsed=10.0s
+[task 28] wrote src/logs/cluster_56853111/chunk_0028.csv (44 rows; 43 ok / 1 fail)

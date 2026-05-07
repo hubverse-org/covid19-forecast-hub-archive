@@ -1,0 +1,47 @@
+file,ok,n_failed,elapsed_sec,first_error
+AMM-EpiInvert/2023-01-23-AMM-EpiInvert.parquet,TRUE,0,11.688491821289062,NA
+CEID-Walk/2021-03-08-CEID-Walk.parquet,TRUE,0,391.20694160461426,NA
+CMU-TimeSeries/2021-07-19-CMU-TimeSeries.parquet,TRUE,0,18.669076681137085,NA
+Covid19Sim-Simulator/2021-03-21-Covid19Sim-Simulator.parquet,TRUE,0,234.11198091506958,NA
+COVIDhub_CDC-ensemble/2021-05-10-COVIDhub_CDC-ensemble.parquet,TRUE,0,437.8471484184265,NA
+COVIDhub-4_week_ensemble/2021-03-08-COVIDhub-4_week_ensemble.parquet,TRUE,0,435.031578540802,NA
+COVIDhub-baseline/2020-12-14-COVIDhub-baseline.parquet,TRUE,0,827.1675977706909,NA
+COVIDhub-ensemble/2020-09-28-COVIDhub-ensemble.parquet,TRUE,0,380.8308892250061,NA
+COVIDhub-trained_ensemble/2021-06-28-COVIDhub-trained_ensemble.parquet,TRUE,0,445.89769101142883,NA
+CU-nochange/2020-12-10-CU-nochange.parquet,TRUE,0,606.4403810501099,NA
+CU-scenario_high/2021-05-16-CU-scenario_high.parquet,TRUE,0,605.6060166358948,NA
+CU-scenario_mid/2020-06-11-CU-scenario_mid.parquet,TRUE,0,4.561579465866089,NA
+CU-select/2020-10-11-CU-select.parquet,TRUE,0,607.1100542545319,NA
+CUBoulder-COVIDLSTM/2021-08-22-CUBoulder-COVIDLSTM.parquet,TRUE,0,376.38324189186096,NA
+epiforecasts-ensemble1/2020-10-05-epiforecasts-ensemble1.parquet,TRUE,0,8.732795715332031,NA
+FAIR-NRAR/2021-05-08-FAIR-NRAR.parquet,TRUE,0,380.1243941783905,NA
+FDANIHASU-Sweight/2021-09-20-FDANIHASU-Sweight.parquet,TRUE,0,4.270298719406128,NA
+Google_Harvard-CPF/2021-07-11-Google_Harvard-CPF.parquet,TRUE,0,87.55502343177795,NA
+GT-DeepCOVID/2023-04-17-GT-DeepCOVID.parquet,TRUE,0,22.295905590057373,NA
+IHME-CurveFit/2020-03-27-IHME-CurveFit.parquet,FALSE,1,14.0174241065979,"?: Required task ID/output type/output type ID combinations missing.  
+ See `missing` attribute for details."
+IUPUI-HkPrMobiDyR/2021-05-10-IUPUI-HkPrMobiDyR.parquet,TRUE,0,15.346314191818237,NA
+JHU_IDD-CovidSP/2022-02-27-JHU_IDD-CovidSP.parquet,TRUE,0,79.50168180465698,NA
+JHUAPL-Bucky/2021-11-29-JHUAPL-Bucky.parquet,TRUE,0,862.6726486682892,NA
+JHUAPL-SLPHospEns/2022-08-01-JHUAPL-SLPHospEns.parquet,TRUE,0,43.18659496307373,NA
+KITmetricslab-select_ensemble/2022-04-04-KITmetricslab-select_ensemble.parquet,TRUE,0,14.292694568634033,NA
+LNQ-ens1/2021-01-31-LNQ-ens1.parquet,FALSE,1,385.16188788414,"?: Required task ID/output type/output type ID combinations missing.  
+ See `missing` attribute for details."
+MIT_CritData-GBCF/2021-02-07-MIT_CritData-GBCF.parquet,TRUE,0,9.105884313583374,NA
+MIT-Cassandra/2021-10-11-MIT-Cassandra.parquet,TRUE,0,17.070465326309204,NA
+MOBS-GLEAM_COVID/2022-08-01-MOBS-GLEAM_COVID.parquet,TRUE,0,32.45645499229431,NA
+MUNI-ARIMA/2023-09-11-MUNI-ARIMA.parquet,TRUE,0,24.869139671325684,NA
+PR_UMD-CF_RepTiLe/2022-10-09-PR_UMD-CF_RepTiLe.parquet,TRUE,0,10.0832200050354,NA
+PSI-DICE/2024-04-14-PSI-DICE.parquet,TRUE,0,22.950408935546875,NA
+QJHong-Encounter/2021-09-12-QJHong-Encounter.parquet,TRUE,0,4.486325025558472,NA
+RPI_UW-Mob_Collision/2020-11-15-RPI_UW-Mob_Collision.parquet,TRUE,0,7.313961505889893,NA
+SteveMcConnell-CovidComplete/2021-03-29-SteveMcConnell-CovidComplete.parquet,TRUE,0,9.257997035980225,NA
+TTU-squider/2021-12-26-TTU-squider.parquet,TRUE,0,6.023895025253296,NA
+UCF-AEM/2022-02-20-UCF-AEM.parquet,TRUE,0,4.2142815589904785,NA
+UCSB-ACTS/2021-01-03-UCSB-ACTS.parquet,TRUE,0,61.01831126213074,NA
+UMass-MechBayes/2020-05-10-UMass-MechBayes.parquet,TRUE,0,7.413764953613281,NA
+UMass-trends_ensemble/2022-02-14-UMass-trends_ensemble.parquet,TRUE,0,43.85498070716858,NA
+UMich-RidgeTfReg/2022-04-25-UMich-RidgeTfReg.parquet,TRUE,0,15.197781324386597,NA
+UT_GISAG-SPDM/2021-11-01-UT_GISAG-SPDM.parquet,TRUE,0,55.329116106033325,NA
+UVA-Ensemble/2021-03-22-UVA-Ensemble.parquet,TRUE,0,399.4243619441986,NA
+YYG-ParamSearch/2020-06-01-YYG-ParamSearch.parquet,TRUE,0,16.914337396621704,NA

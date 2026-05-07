@@ -1,0 +1,47 @@
+file,ok,n_failed,elapsed_sec,first_error
+AIpert-pwllnod/2021-04-05-AIpert-pwllnod.parquet,FALSE,1,24.160337209701538,"?: Required task ID/output type/output type ID combinations missing.  
+ See `missing` attribute for details."
+BPagano-RtDriven/2022-11-06-BPagano-RtDriven.parquet,TRUE,0,85.92731475830078,NA
+CEPH-Rtrend_covid/2024-03-11-CEPH-Rtrend_covid.parquet,TRUE,0,25.44740605354309,NA
+Columbia_UNC-SurvCon/2020-08-16-Columbia_UNC-SurvCon.parquet,TRUE,0,6.4615654945373535,NA
+CovidAnalytics-DELPHI/2022-02-28-CovidAnalytics-DELPHI.parquet,TRUE,0,31.356627464294434,NA
+COVIDhub_CDC-ensemble/2023-10-30-COVIDhub_CDC-ensemble.parquet,TRUE,0,37.785094261169434,NA
+COVIDhub-4_week_ensemble/2023-08-21-COVIDhub-4_week_ensemble.parquet,TRUE,0,37.86591839790344,NA
+COVIDhub-baseline/2023-05-22-COVIDhub-baseline.parquet,TRUE,0,38.4345600605011,NA
+COVIDhub-ensemble/2023-03-06-COVIDhub-ensemble.parquet,TRUE,0,20.66757583618164,NA
+COVIDhub-trained_ensemble/2023-12-11-COVIDhub-trained_ensemble.parquet,TRUE,0,37.8512864112854,NA
+CU-scenario_high/2020-05-21-CU-scenario_high.parquet,TRUE,0,6.760080814361572,NA
+CU-scenario_low/2022-01-09-CU-scenario_low.parquet,TRUE,0,910.646411895752,NA
+CU-scenario_mid/2022-07-31-CU-scenario_mid.parquet,TRUE,0,869.7673487663269,NA
+CU-select/2023-01-22-CU-select.parquet,TRUE,0,887.3017551898956,NA
+DDS-NBDS/2021-03-01-DDS-NBDS.parquet,TRUE,0,22.93108057975769,NA
+FAIR-NRAR/2021-02-12-FAIR-NRAR.parquet,TRUE,0,570.8299560546875,NA
+FAIR-NRAR/2021-10-26-FAIR-NRAR.parquet,TRUE,0,570.2829620838165,NA
+Geneva-DetGrowth/2021-03-21-Geneva-DetGrowth.parquet,TRUE,0,5.609628200531006,NA
+GT-DeepCOVID/2021-11-08-GT-DeepCOVID.parquet,TRUE,0,74.16930079460144,NA
+IBF-TimeSeries/2021-04-26-IBF-TimeSeries.parquet,TRUE,0,4.1397480964660645,NA
+IowaStateLW-STEM/2020-05-17-IowaStateLW-STEM.parquet,TRUE,0,21.899563789367676,NA
+JHU_IDD-CovidSP/2020-06-14-JHU_IDD-CovidSP.parquet,TRUE,0,12.145694971084595,NA
+JHU_UNC_GAS-StatMechPool/2021-08-22-JHU_UNC_GAS-StatMechPool.parquet,TRUE,0,588.4375960826874,NA
+JHUAPL-SLPHospEns/2021-01-04-JHUAPL-SLPHospEns.parquet,TRUE,0,71.59355974197388,NA
+Karlen-pypm/2022-08-14-Karlen-pypm.parquet,TRUE,0,81.51031398773193,NA
+LANL-GrowthRate/2021-02-18-LANL-GrowthRate.parquet,TRUE,0,978.6356208324432,NA
+Microsoft-DeepSTIA/2021-12-13-Microsoft-DeepSTIA.parquet,TRUE,0,143.0294930934906,NA
+MIT_ISOLAT-Mixtures/2022-03-21-MIT_ISOLAT-Mixtures.parquet,TRUE,0,15.282188892364502,NA
+MOBS-GLEAM_COVID/2021-01-25-MOBS-GLEAM_COVID.parquet,TRUE,0,87.09307622909546,NA
+MUNI-ARIMA/2021-12-27-MUNI-ARIMA.parquet,TRUE,0,81.23959279060364,NA
+OneQuietNight-ML/2021-01-17-OneQuietNight-ML.parquet,TRUE,0,602.074640750885,NA
+PSI-DICE/2022-11-07-PSI-DICE.parquet,TRUE,0,66.98019742965698,NA
+PSI-DRAFT/2022-10-03-PSI-DRAFT.parquet,TRUE,0,9.962360620498657,NA
+RobertWalraven-ESG/2021-08-23-RobertWalraven-ESG.parquet,TRUE,0,25.38244128227234,NA
+SGroup-RandomForest/2023-11-13-SGroup-RandomForest.parquet,TRUE,0,38.39202427864075,NA
+SWC-TerminusCM/2020-05-29-SWC-TerminusCM.parquet,TRUE,0,9.281474828720093,NA
+UA-EpiCovDA/2021-08-15-UA-EpiCovDA.parquet,TRUE,0,15.094603538513184,NA
+UCLA-SuEIR/2022-05-15-UCLA-SuEIR.parquet,TRUE,0,55.50760531425476,NA
+UMass-gbq/2022-12-04-UMass-gbq.parquet,TRUE,0,68.84274792671204,NA
+UMass-sarix/2022-12-26-UMass-sarix.parquet,TRUE,0,51.454697132110596,NA
+UMich-RidgeTfReg/2020-10-19-UMich-RidgeTfReg.parquet,FALSE,1,24.0351140499115,"?: Required task ID/output type/output type ID combinations missing.  
+ See `missing` attribute for details."
+USC-SI_kJalpha/2021-10-24-USC-SI_kJalpha.parquet,TRUE,0,534.3379430770874,NA
+UT-Osiris/2023-07-17-UT-Osiris.parquet,TRUE,0,24.966941356658936,NA
+WalmartLabsML-LogForecasting/2020-12-13-WalmartLabsML-LogForecasting.parquet,TRUE,0,15.399505615234375,NA
