@@ -522,5 +522,8 @@
       }
     }
   ],
-  "output_type_id_datatype": "double"
+  "output_type_id_datatype": "double",
+  "derived_task_ids": [
+    "target_end_date"
+  ]
 }
