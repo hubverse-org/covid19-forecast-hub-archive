@@ -20,25 +20,41 @@ jobs:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
+      - name: Check for bulk-import label
+        id: gate
+        run: |
+          if [[ "${{ contains(github.event.pull_request.labels.*.name, 'bulk-import') }}" == "true" ]]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::Skipping CI validation — 'bulk-import' label present. Files were validated offline (see src/logs/pr-submission-tracking.csv)."
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - uses: actions/checkout@v5
+        if: steps.gate.outputs.skip != 'true'
 
       - uses: r-lib/actions/setup-r@v2
+        if: steps.gate.outputs.skip != 'true'
         with:
           install-r: false
           use-public-rspm: true
           extra-repositories: 'https://hubverse-org.r-universe.dev'
 
       - name: Update R
+        if: steps.gate.outputs.skip != 'true'
         run: |
           sudo apt-get update
 
       - uses: r-lib/actions/setup-r-dependencies@v2
+        if: steps.gate.outputs.skip != 'true'
         with:
           packages: |
             any::hubValidations
             any::sessioninfo
+            github::r-lib/gh
 
       - name: Run validations
+        if: steps.gate.outputs.skip != 'true'
         env:
           PR_NUMBER: ${{ github.event.number }}
         run: |
