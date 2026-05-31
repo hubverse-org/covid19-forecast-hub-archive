@@ -17,7 +17,14 @@ regarding attribution of the source forecasts.
 ## What's in the archive
 
 - **129 team-models** spanning 2020-03-15 → 2024-04-29
-- **8,954 forecast files** (parquet, ~2.8 GB total)
+- **8,821 forecast files** (parquet, ~2.6 GB total), all passing
+  `hubValidations::validate_submission`. From the 8,954 originally
+  produced by the conversion pipeline, 85 non-monotonic and 48
+  OliverWyman-Navigator files were dropped during the cleanup passes
+  (`src/13`, `src/16`); 190 incomplete-quantile / floating-point-noise
+  files were remediated via the `distfromq` pipeline (`src/19`,
+  `src/20`). Per-file provenance for the remediated set lives in the
+  `fixed_by` column of `src/logs/pr-submission-tracking.csv`.
 - **4 targets**: `inc death`, `cum death`, `inc case`, `inc hosp`
 - **Quantile predictions** (23 quantiles for deaths/hosp, 7 for cases) plus
   optional `mean` and `median` point estimates
@@ -81,25 +88,57 @@ over the life of the legacy hub:
 deaths and hospitalizations, 7 for cases). `mean` and `median` are
 declared but not required.
 
-## Known data quality issues
+## Data quality remediation
 
-The archive preserves the legacy submissions as-is. Re-validating against
-the strict hubverse schema surfaces a small number of files (~3.7% of the
-archive) with issues that were latent in the original data:
+Re-validating the originally-converted 8,954 files against the strict
+hubverse schema surfaced ~3.7 % with data quality issues that were latent
+in the legacy hub's submissions. The pipeline now resolves these through a
+mix of removals (where remediation would alter substantive forecasts) and
+imputation (where the team's submitted anchors were sufficient to infer
+the missing quantiles). The current archive's 8,821 files all pass
+`hubValidations::validate_submission`.
 
-- **234** files have at least one `(target, forecast_date, location, horizon)`
-  group missing one or more required quantiles
-- **85** files have non-monotonic quantiles (e.g. the 0.10 quantile is
-  greater than the 0.05 quantile)
-- **13** files have `NA` or non-numeric values in the `value` column
-- **2** files contain a `+` character in the `model_abbr` that
-  `hubValidations:::parse_file_name` rejects
+Issues encountered and how each was handled:
 
-The full per-team-per-category breakdown is in
-[`docs/known-validation-issues.md`](docs/known-validation-issues.md), and
-the per-file pass/fail logs are under `src/logs/`. None of these failures
-indicate problems with the conversion pipeline; every issue traces to the
-original team's submission.
+| Issue | Files affected | How resolved | Driver script | Manifest / log |
+|---|---:|---|---|---|
+| Non-monotonic quantiles (real crossings, not ULP noise) | 85 | Parquet output dropped; original CSVs untouched in the legacy hub | `src/13_remove_nonmonotone.R` | [`src/logs/removed_nonmonotone_2026-04-28.csv`](src/logs/removed_nonmonotone_2026-04-28.csv) |
+| `+` character in directory/filename (rejected by `hubValidations:::parse_file_name`) | 2 | Dirs and parquets renamed to drop the trailing `_+`; metadata `model_abbr` updated to match | `src/14_rename_uchicago.R` | (see `docs/known-validation-issues.md` §2) |
+| `NA` rows isolated to entire (target, ref_date, location, horizon) groups | 13 | NA rows dropped from the affected groups; 11 then pass full validation, 2 remained in the OliverWyman row below | `src/15_clean_na_groups.R` | [`src/logs/clean_na_groups_2026-04-28.csv`](src/logs/clean_na_groups_2026-04-28.csv) |
+| OliverWyman-Navigator: 46 incomplete-quantile files + 2 NA-plus-incomplete | 48 | Parquet output dropped; whole-team policy decision | `src/16_remove_oliverwyman_failures.R` | [`src/logs/removed_oliverwyman_2026-04-29.csv`](src/logs/removed_oliverwyman_2026-04-29.csv) |
+| Floating-point monotonicity (\|delta\| < 1e-11, USC-SI_kJalpha) | 2 | Snap each ULP-noise violator forward to its predecessor's value (~12-sig-fig fidelity to the team's predictions) | `src/19_fix_floating_point_noise.R` | [`src/logs/noise_fix_log.csv`](src/logs/noise_fix_log.csv) |
+| Incomplete required quantile set (per-target levels missing) | 188 | For each group with ≥ 5 anchors: fit `distfromq::make_q_fn` on submitted (p, v) pairs and impute missing levels; isotonically clamp to `[max(0, prev_anchor), next_anchor]`. For groups with < 5 anchors: drop the group's rows. | `src/20_distfromq_fill.R` | [`src/logs/distfromq_fill_log.csv`](src/logs/distfromq_fill_log.csv), [`src/logs/fail_anchor_summary.csv`](src/logs/fail_anchor_summary.csv) |
+
+The remediated set (190 files) is identified by a `fixed_by` column in
+[`src/logs/pr-submission-tracking.csv`](src/logs/pr-submission-tracking.csv)
+(`"distfromq"` for the 188, `"noise_clamp"` for the 2). The most-affected
+teams are listed below; see [`docs/known-validation-issues.md`](docs/known-validation-issues.md)
+§5 for the full breakdown.
+
+| Team-model | Files remediated | Issue |
+|---|---:|---|
+| UChicagoCHATTOPADHYAY-UnIT | 49 | Incomplete quantile sets |
+| LNQ-ens1 | 29 | Incomplete quantile sets |
+| AIpert-pwllnod | 27 | Incomplete quantile sets |
+| QJHong-Encounter | 26 | Incomplete quantile sets |
+| IHME-CurveFit | 16 | Incomplete quantile sets |
+| UMich-RidgeTfReg | 16 | Incomplete quantile sets |
+| Auquan-SEIR | 5 | Incomplete quantile sets |
+| JHU_UNC_GAS-StatMechPool | 3 | Incomplete quantile sets |
+| JHU_CSSE-DECOM, IowaStateLW-STEM, LANL-GrowthRate, MOBS-GLEAM_COVID, UMass-MechBayes | 2 each | Incomplete quantile sets |
+| USC-SI_kJalpha | 2 | Floating-point monotonicity (ULP noise) |
+| 7 other teams | 1 each | Incomplete quantile sets |
+
+Aggregate impact across the 188 distfromq fills: 31,583 groups received
+imputed values (351,554 new rows), 42,219 sparse groups were dropped
+(132,503 rows). Re-validation log:
+[`src/logs/validate_fixed_local.csv`](src/logs/validate_fixed_local.csv).
+
+A residual **149 legacy CSVs** sit outside the validated archive: 16
+were never converted (no rows matched any active round), 85 were dropped
+for real (non-ULP) quantile crossings, and 48 were the OliverWyman-Navigator
+removals listed above. The original CSVs remain untouched in
+`../covid19-forecast-hub/data-processed/`.
 
 ## How the archive was built
 
@@ -133,7 +172,18 @@ source("src/08_build_oracle_output.R")
 # 4. Forecast conversion (parallel; ~6 min on 8 workers)
 source("src/11_convert_all_forecasts.R")
 
-# 5. Validation (parallel; ~28 min on 8 workers)
+# 5. Cleanups (drop non-monotonic, rename _+, clean NAs, drop OliverWyman failures)
+source("src/13_remove_nonmonotone.R")
+source("src/14_rename_uchicago.R")
+source("src/15_clean_na_groups.R")
+source("src/16_remove_oliverwyman_failures.R")
+
+# 6. Remediation: 2-file noise clamp + 188-file distfromq fill (~1 hour total)
+source("src/19_fix_floating_point_noise.R")
+source("src/20_distfromq_fill.R")
+
+# 7. Full re-validation (~28 min on 8 workers, or ~40 min for the
+#    just-remediated subset via src/21)
 system("Rscript src/12b_fast_validate.R --full")
 ```
 
