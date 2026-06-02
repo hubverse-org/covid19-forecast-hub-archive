@@ -92,17 +92,21 @@ OliverWyman-Navigator files still failed because they had *both* NA values
 *and* incomplete quantile sets in non-NA groups — those 2 are removed in
 step 4 below.
 
-### 4. Removed 48 failing OliverWyman-Navigator files
+### 4. Removed 48 failing OliverWyman-Navigator files (subsequently recovered — see [§6](#6-oliverwyman-navigator-recovery))
 
 OliverWyman-Navigator was the largest single source of remaining failures
-(46 incomplete + 2 NA-plus-incomplete = 48 of 55 total files). Like the
-non-monotonic case, these can't be made schema-valid without altering the
-team's submitted predictions, so the 48 failing parquet outputs were
-dropped from `model-output/`. The 7 passing files are kept; the original
-CSVs in `../covid19-forecast-hub/data-processed/` remain untouched.
+(46 incomplete + 2 NA-plus-incomplete = 48 of 55 total files). At the
+time of cleanup #4 the policy was to drop files that couldn't be made
+schema-valid without altering submitted predictions, so the 48 failing
+parquet outputs were dropped from `model-output/`. The 7 passing files
+are kept; the original CSVs in `../covid19-forecast-hub/data-processed/`
+remain untouched.
 
 Manifest: `src/logs/removed_oliverwyman_2026-04-29.csv` (48 entries).
 Driver:   `src/16_remove_oliverwyman_failures.R`.
+
+After the §5 policy reversal, the 48 dropped files were re-examined and
+recovered with zero information loss; see §6 below.
 
 ---
 
@@ -227,6 +231,80 @@ submissions from the legacy hub.
 
 ---
 
+## 6. OliverWyman-Navigator recovery
+
+After the §5 distfromq pipeline landed, the 48 OliverWyman-Navigator
+files dropped in §4 were re-examined. They turned out to have a uniform,
+benign failure pattern that doesn't need `distfromq` at all and can be
+fixed with zero information loss.
+
+### The OW failure pattern
+
+Re-converting each removed file via `src/10` and inspecting the contents
+(`src/22_recover_oliverwyman.R` audit step):
+
+| Target | Groups per file | Quantile anchors per group |
+|---|---:|---:|
+| `cum death` | 208 | 23 (complete required set) |
+| `inc death` | 208 | 23 (complete required set) |
+| `inc case` | ~8,000–9,000 | **1**, always at q=0.5 |
+
+For each `inc case` group, the single quantile row at q=0.5 has the
+**exact same value** as the file's corresponding `median` row. OW was
+emitting their `inc case` point estimate as both `quantile @ 0.5` and
+`median` — redundant under the hubverse schema. With only 1 of the 7
+required quantile levels present per inc-case group, validation fails
+with `"Required task ID/output type/output type ID combinations missing"`.
+
+### Fix
+
+For each of the 48 files, per `src/22_recover_oliverwyman.R`:
+
+1. Re-convert the legacy CSV via `src/10::convert_forecast_file`.
+2. Drop all rows where `target == "inc case"` AND `output_type == "quantile"`.
+   The corresponding `median` rows are kept; same value, zero information
+   loss.
+3. Drop any NA-value rows. This matches `src/15`'s prior behaviour for
+   the 2 OW files (`2021-06-13`, `2021-06-20`) that had ~10K NA rows
+   each.
+
+`cum death` and `inc death` rows are untouched — they were already
+complete.
+
+### Aggregate impact
+
+| Quantity | Value |
+|---|---:|
+| Files recovered | 48 / 48 |
+| Input rows (all 48 combined) | 1,320,552 |
+| `inc case` quantile rows dropped (redundant with median) | 420,948 |
+| NA-value rows dropped (2 files) | 19,968 |
+| Output rows | 879,636 |
+
+### Re-validation
+
+All 48 recovered files pass `hubValidations::validate_submission` on
+local 8-core parallel re-validation (4.8 min wall). Log:
+`src/logs/validate_recovered_oliverwyman.csv` (`ok=TRUE` for all 48).
+
+### Provenance
+
+- `src/logs/recover_oliverwyman_log.csv` — per-file: rows in,
+  inc-case-quantile rows dropped, NA rows dropped, rows out, status.
+- `src/logs/validate_recovered_oliverwyman.csv` — re-validation outcome.
+- `src/logs/pr-submission-tracking.csv` — `fixed_by="oliverwyman_recovery"`
+  on each of the 48 files.
+
+### Why this is information-preserving (and §5's distfromq isn't entirely)
+
+§5's distfromq fill creates rows the team didn't submit (and drops sparse
+groups). §6's OW recovery only drops rows whose value is exactly
+represented elsewhere in the same file (the redundant `inc case`
+quantile = the `median` value). Under §6 the team's submitted predictions
+are preserved verbatim; only schema redundancy is removed.
+
+---
+
 ## Original sample-run snapshot (pre-cleanup)
 
 Kept for reference. The 7 sample failures:
@@ -235,7 +313,7 @@ Kept for reference. The 7 sample failures:
 |---|---|---|
 | `Auquan-SEIR/2020-08-24-Auquan-SEIR.parquet` | incomplete quantiles | still failing (no remediation possible) |
 | `CovidActNow-SEIR_CAN/2020-07-05-CovidActNow-SEIR_CAN.parquet` | incomplete quantiles | still failing (no remediation possible) |
-| `OliverWyman-Navigator/2021-06-20-OliverWyman-Navigator.parquet` | NA values + incomplete quantiles | parquet removed in cleanup #4 |
+| `OliverWyman-Navigator/2021-06-20-OliverWyman-Navigator.parquet` | NA values + incomplete quantiles | parquet removed in cleanup #4, recovered in §6 (NA-row + inc-case-quantile drop) |
 | `UChicago-CovidIL_10_+/2020-05-18-…` | `+` in filename | renamed → ✓ pass |
 | `UChicago-CovidIL_30_+/2020-05-18-…` | `+` in filename | renamed → ✓ pass |
 | `UChicagoCHATTOPADHYAY-UnIT/2021-12-26-…` | incomplete quantiles | still failing (no remediation possible) |
