@@ -1,30 +1,53 @@
 # COVID-19 Forecast Hub Archive
 
-A [hubverse](https://hubverse.io)-compliant archive of the data originally
-submitted to the [COVID-19 Forecast Hub](https://github.com/reichlab/covid19-forecast-hub),
+A [hubverse](https://hubverse.io)-compliant archive of the data 
+submitted to the [original US COVID-19 Forecast Hub](https://github.com/reichlab/covid19-forecast-hub),
 which collected weekly forecasts of US COVID-19 deaths, cases, and
-hospitalizations from April 2020 through April 2024.
+hospitalizations from April 2020 through April 2024. The original hub
+was founded and led by [the Reich Lab at UMass-Amherst](https://reichlab.io/).
 
-The legacy hub used a custom CSV format that predates the hubverse standard.
+In fall 2024, an updated version of the US COVID-19 Forecast Hub was 
+re-started by the US CDC, using hubverse standards 
+[[GitHub repo](https://github.com/cdcepi/FluSight-forecast-hub), 
+[dashboard](https://reichlab.io/covidhub-dashboard/)] .
+
+The original hub used a custom CSV format that predates the hubverse standard.
 This repo is a faithful re-encoding of the same forecasts (and the same
 observed data used for evaluation) into hubverse layout, so they can be
 queried with `hubData`, `hub-data`, and the rest of the hubverse tooling.
 
-Anyone interested in using these data for additional research or
-publications is requested to contact `nick@umass.edu` for information
-regarding attribution of the source forecasts.
+## Citing the Forecast Hub
+
+- To cite the US COVID-19 Forecast Hub dataset and project as a whole, please cite the dataset descriptor article:
+
+Cramer EY, Huang Y, Wang Y, et al. The United States COVID-19 Forecast Hub dataset. Scientific Data, 2022, vol. 9, no 1, p. 462. URL: https://doi.org/10.1038/s41597-022-01517-w  
+ 
+bibtex:
+```
+@article {Cramer2022-hub-dataset,
+	author = {Cramer, Estee Y and Huang, Yuxin and Wang, Yijin and Ray, Evan L and Cornell, Matthew and Bracher, Johannes and Brennen, Andrea and Castro Rivadeneira, Alvaro J and Gerding, Aaron and House, Katie and Jayawardena, Dasuni and Kanji, Abdul H and Khandelwal, Ayush and Le, Khoa and Niemi, Jarad and Stark, Ariane and Shah, Apurv and Wattanachit, Nutcha and Zorn, Martha W and Reich, Nicholas G and US COVID-19 Forecast Hub Consortium},
+	title = {The United States COVID-19 Forecast Hub dataset},
+	year = {2022},
+	doi = {10.1101/2021.11.04.21265886},
+	URL = {https://doi.org/10.1038/s41597-022-01517-w},
+	journal = {Scientific Data}
+}
+```
+
+- To cite research results from the hub, please choose the relevant [research publication](https://covid19forecasthub.org/doc/research/) from the Hub to cite.
+
+- To cite the dataset and GitHub repository directly, we ask that you cite the Data Descriptor paper (see first bullet point above) but you may also cite or refer to the [permanent DOI for the original GitHub repo](https://zenodo.org/badge/latestdoi/254453761) (the DOI is updated by Zenodo when we create a new "release" of the original GitHub repository).
+
+## Data license and reuse
+We are grateful to the teams who have generated these and made their data publicly available under different terms and licenses. You will find the licenses (when provided) within the model-specific files in the [model-metadata](./model-metadata/) directory. Please consult these licenses before using these data to ensure that you follow the terms under which these data were released.
+
+All source code that is specific to this repository is available under an open-source [MIT license](./LICENSE). We note that this license does NOT cover model code from the various teams (maybe available from them under other licenses) or model forecast data (available under specified licenses as described above). 
 
 ## What's in the archive
 
 - **129 team-models** spanning 2020-03-15 → 2024-04-29
-- **8,821 forecast files** (parquet, ~2.6 GB total), all passing
-  `hubValidations::validate_submission`. From the 8,954 originally
-  produced by the conversion pipeline, 85 non-monotonic and 48
-  OliverWyman-Navigator files were dropped during the cleanup passes
-  (`src/13`, `src/16`); 190 incomplete-quantile / floating-point-noise
-  files were remediated via the `distfromq` pipeline (`src/19`,
-  `src/20`). Per-file provenance for the remediated set lives in the
-  `fixed_by` column of `src/logs/pr-submission-tracking.csv`.
+- **8,821 model output files** (parquet, ~2.6 GB total), all passing
+  `hubValidations::validate_submission`. 
 - **4 targets**: `inc death`, `cum death`, `inc case`, `inc hosp`
 - **Quantile predictions** (23 quantiles for deaths/hosp, 7 for cases) plus
   optional `mean` and `median` point estimates
@@ -32,6 +55,8 @@ regarding attribution of the source forecasts.
   state + US + 3,144 **county-level** locations for cases
 - **Target data** (615,683 weekly/daily observations) and **oracle output**
   (1,847,049 rows) for evaluation
+
+For definitions of terms like target data or model output files, please consult the [hubverse data documentation](https://docs.hubverse.io/en/latest/user-guide/intro-data-formats.html).
 
 ## Repository layout
 
@@ -75,8 +100,12 @@ Across the archive: 5,746 files were classified as `median`, 2,805 as
 
 ## Round structure
 
-Three era-based rounds capture how the set of requested targets changed
-over the life of the legacy hub:
+In the original COVID-19 Forecast Hub, there were several different "phases" where different 
+types of forecasts were solicited for different targets, such as incident deaths (`inc death`),
+cumulative deaths (`cum death`) or incident cases or hospitalizations (`inc case` or `inc hosp`).
+In hubverse terminology, these phases are considered [rounds](https://docs.hubverse.io/en/latest/overview/terminology.html#round)
+and the three rounds below capture 
+how the set of requested targets changed over the life of the original hub:
 
 | Round | Date range | Active targets |
 |---|---|---|
@@ -84,7 +113,7 @@ over the life of the legacy hub:
 | R2 | 2020-07-26 → 2023-03-05 | `inc death`, `cum death`, `inc case`, `inc hosp` |
 | R3 | 2023-03-06 → 2024-04-29 | `inc hosp` |
 
-`tasks.json` declares each target's quantile set as required (23 for
+[`tasks.json`](./hub-config/tasks.json) declares each target's quantile set as required (23 for
 deaths and hospitalizations, 7 for cases). `mean` and `median` are
 declared but not required.
 
@@ -94,15 +123,15 @@ Re-validating the originally-converted 8,954 files against the strict
 hubverse schema surfaced ~3.7 % with data quality issues that were latent
 in the legacy hub's submissions. The pipeline now resolves these through a
 mix of removals (where remediation would alter substantive forecasts) and
-imputation (where the team's submitted anchors were sufficient to infer
-the missing quantiles). The current archive's 8,821 files all pass
+imputation (where the team's submitted quantiles were sufficient to infer
+the missing ones). The current archive's 8,821 files all pass
 `hubValidations::validate_submission`.
 
 Issues encountered and how each was handled:
 
 | Issue | Files affected | How resolved | Driver script | Manifest / log |
 |---|---:|---|---|---|
-| Non-monotonic quantiles (real crossings, not ULP noise) | 85 | Parquet output dropped; original CSVs untouched in the legacy hub | `src/13_remove_nonmonotone.R` | [`src/logs/removed_nonmonotone_2026-04-28.csv`](src/logs/removed_nonmonotone_2026-04-28.csv) |
+| Non-monotonic quantiles (real crossings, not floating point errors) | 85 | Parquet output dropped; original CSVs untouched in the legacy hub | `src/13_remove_nonmonotone.R` | [`src/logs/removed_nonmonotone_2026-04-28.csv`](src/logs/removed_nonmonotone_2026-04-28.csv) |
 | `+` character in directory/filename (rejected by `hubValidations:::parse_file_name`) | 2 | Dirs and parquets renamed to drop the trailing `_+`; metadata `model_abbr` updated to match | `src/14_rename_uchicago.R` | (see `docs/known-validation-issues.md` §2) |
 | `NA` rows isolated to entire (target, ref_date, location, horizon) groups | 13 | NA rows dropped from the affected groups; 11 then pass full validation, 2 remained in the OliverWyman row below | `src/15_clean_na_groups.R` | [`src/logs/clean_na_groups_2026-04-28.csv`](src/logs/clean_na_groups_2026-04-28.csv) |
 | OliverWyman-Navigator: 46 incomplete-quantile files + 2 NA-plus-incomplete | 48 | Parquet output dropped; whole-team policy decision | `src/16_remove_oliverwyman_failures.R` | [`src/logs/removed_oliverwyman_2026-04-29.csv`](src/logs/removed_oliverwyman_2026-04-29.csv) |
