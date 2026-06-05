@@ -16,7 +16,7 @@
   ],
   "timezone": "US/Eastern",
   "cloud": {
-    "enabled": false,
+    "enabled": true,
     "host": {
       "name": "aws",
       "storage_service": "s3",
