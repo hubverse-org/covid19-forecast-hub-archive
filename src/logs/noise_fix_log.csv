@@ -1,0 +1,3 @@
+file,group_key,q_level,old_value,new_value,abs_delta
+USC-SI_kJalpha/2022-01-09-USC-SI_kJalpha.parquet,cum death|2022-01-09|49|3,0.55,3995.675911902714,3995.6759119027142,4.547473508864641e-13
+USC-SI_kJalpha/2022-03-27-USC-SI_kJalpha.parquet,cum death|2022-03-27|13|1,0.6,36834.359228816385,36834.35922881639,7.275957614183426e-12

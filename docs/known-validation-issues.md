@@ -139,15 +139,91 @@ re-validation has not been run since the cleanups; rerun
 | Auquan-SEIR | 5 | Incomplete quantile sets |
 | (others, smaller counts) | … | Incomplete quantile sets |
 
-### Why these survive in the archive
+### Why these failures existed in the archive
 
 These submissions were accepted by the legacy hub at the time (its
 validation was less strict on per-group quantile completeness).
-Re-validating against the strict hubverse schema surfaces the data quality
-issues that were latent in the original archive. None of these failures
-indicate problems with the conversion pipeline — they reflect what the
-teams originally submitted, and altering the submitted predictions would
-defeat the archival intent.
+Re-validating against the strict hubverse schema surfaced the data
+quality issues that were latent in the original archive.
+
+> **Note**: A previous version of this document stated that altering the
+> submitted predictions would defeat the archival intent. That policy was
+> revisited; see [Section 5](#5-distfromq-imputed-quantile-fills) below
+> for the current treatment of these 190 files.
+
+---
+
+## 5. distfromq-imputed quantile fills
+
+After the cleanups above, 190 files (188 incomplete-quantile + 2
+floating-point monotonicity) still failed
+`hubValidations::validate_submission` on a full Unity cluster pass
+(job `59079072`). Rather than leave them unconverted, all 190 were
+remediated and now ship in the archive. The fix policy and per-file
+log live in `src/logs/distfromq_fill_log.csv`,
+`src/logs/noise_fix_log.csv`, and
+`src/logs/validate_fixed_local.csv`.
+
+### What changed (high level)
+
+| Failure type | Files | Treatment | Driver |
+|---|---:|---|---|
+| Floating-point monotonicity (|delta| < 1e-9 on otherwise constant runs) | 2 | Snap each ULP-noise violator forward to its predecessor's value. Preserves the team's predictions to ~12 sig figs. | `src/19_fix_floating_point_noise.R` |
+| Incomplete required quantile set | 188 | For each `(target, reference_date|forecast_date, location, horizon)` group that lacks the target's required quantile levels: fit `distfromq::make_q_fn` on the team's submitted (probability, value) pairs and impute the missing levels. | `src/20_distfromq_fill.R` |
+
+### Eligibility & per-group policy for the 188
+
+- **Per-target required level sets.** The hub uses different required
+  quantile sets per target (`inc case` → 7 levels;
+  `inc death` / `cum death` / `inc hosp` → 23 levels). The fix reads
+  `hub-config/tasks.json` and applies each target's own required set.
+- **≥ 5 anchor quantiles** per group is required before `distfromq`
+  will impute. Groups with fewer anchors are *dropped* (their rows are
+  removed from the file) so the remaining content is fully valid.
+- **Isotonic clamping** on imputed values: each new value at level *p*
+  is clamped to lie within `[max(0, prev_anchor_value), next_anchor_value]`.
+  This is necessary because `distfromq`'s left-tail extrapolation can go
+  below 0 (forbidden by the hub's `value >= 0` constraint) and its
+  spline can overshoot sub-ULP between equal anchors.
+
+### Aggregate impact (188 incomplete files)
+
+| Quantity | Value |
+|---|---:|
+| Groups unchanged (already complete for that target) | 689,517 |
+| Groups filled by distfromq | 31,583 |
+| Groups dropped (< 5 anchors) | 42,219 |
+| Rows added | 351,554 |
+| Rows dropped | 132,503 |
+
+### Re-validation
+
+All 190 fixed files pass `hubValidations::validate_submission` on local
+parallel re-validation (`src/21_validate_fixed_local.R`, 8 cores, 40
+min wall). Log: `src/logs/validate_fixed_local.csv` (`ok=TRUE` for all
+190).
+
+### Provenance
+
+Imputed rows carry no in-parquet marker — they share schema and shape
+with the team's submitted rows. Provenance lives in three places:
+
+- `src/logs/distfromq_fill_log.csv` — per-file counts of groups
+  unchanged / filled / dropped + min anchors used.
+- `src/logs/noise_fix_log.csv` — per-value snap log for the 2 monotonicity
+  files; each row records the original and snapped values + |delta|.
+- `src/logs/pr-submission-tracking.csv` — `fixed_by` column on each of
+  the 190 files (`"distfromq"` or `"noise_clamp"`).
+
+### Policy reversal note
+
+Prior policy was "altering submitted predictions defeats archival
+intent." That stance prioritised provenance over completeness. The
+reversal trades 132,503 dropped rows + 351,554 imputed rows (~0.6% of
+the archive) for a fully validation-clean dataset of 8,821 files at
+~97.9% pass rate → **100% pass rate**. The imputation is documented
+end-to-end so downstream users can recover or re-derive the original
+submissions from the legacy hub.
 
 ---
 
